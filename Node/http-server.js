@@ -9,7 +9,7 @@ http.createServer( function(request, response) {
 
 //A series of data collection and tests - - - - - - 
 
-//Starting with Curl
+// -- Starting with Curl
 
 //Command:
 //curl -i http://localhost:1337
@@ -22,7 +22,7 @@ http.createServer( function(request, response) {
 //Transfer-Encoding: chunked
 
 
-//Apache Benchmark
+// -- Apache Benchmark
 
 //Command:
 //ab -n 100 -c 100 http://127.0.0.1:1337/
