@@ -27,5 +27,12 @@ server.listen(1337);
 //world!
 //Connection closed by foreign host.
 
+// -- NetCat
 
+//Command:
+//nc localhost 1337
+
+//Response:
+//howdy
+//world!
 
