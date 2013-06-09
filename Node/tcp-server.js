@@ -4,7 +4,7 @@ var net = require('net');
 
 var server = net.createServer(function(socket){
 	socket.write('howdy\n');
-	socket.end('world!\n');
+	socket.write('world!\n');
 
 	socket.on('data', function(data) {
 		socket.write(data);
