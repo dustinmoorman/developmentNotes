@@ -12,6 +12,11 @@ var server = net.Server(function(socket){
 			sockets[i].write(data);
 		}
 	});
+
+	socket.on('end', function() {
+		var i = sockets.indexOf(socket);
+		sockets.splice(i,1);
+	});
 });
 
 server.listen(1337);
