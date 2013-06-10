@@ -11,6 +11,7 @@ var server = net.Server(function(socket){
 
 	socket.on('data', function(data){
 		for (var i = 0; i < sockets.length; i++) {
+			if(sockets[i] == socket) continue;
 			sockets[i].write(data);
 		}
 	});
