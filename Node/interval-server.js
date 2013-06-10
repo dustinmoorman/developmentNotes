@@ -28,3 +28,7 @@ http.Server( function (request, response) {
 		response.end("Hellur Wurld");
 	}, 1000);
 }).listen(1337);
+
+
+//Now if I curl it (curl -i http://localhost:1337)
+//It'll wait a second and send back a hellur werld!
