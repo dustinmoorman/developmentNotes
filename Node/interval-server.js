@@ -21,3 +21,10 @@ setInterval( function() {
 }, 2000);
 
 console.log("do your thing!");
+
+http.Server( function (request, response) {
+	response.writeHead(200);
+	setTimeout(function(){
+		response.end("Hellur Wurld");
+	}, 1000);
+});
