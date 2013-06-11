@@ -1,0 +1,10 @@
+REST provides a set of architectural constraints that, when applied as a whole emphasizes:
+
+- scalability of component interactions
+- generality of interfaces
+- independent deployment of components
+- intermediary components to reduce latency
+- enforce security
+- encapsulate legacy systems
+
+All great.. :)
