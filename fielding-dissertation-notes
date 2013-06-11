@@ -8,3 +8,7 @@ REST provides a set of architectural constraints that, when applied as a whole e
 - encapsulate legacy systems
 
 All great.. :)
+
+---------
+
+"A good architecture is not created in a vaccum. All design decisions at the architectural level should be made within the context of the functional, behavioral, and social requirements of the system being designed, which is a principle that applies equally to both software and the traditional field of building..."
