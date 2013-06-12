@@ -264,3 +264,20 @@ Things to consider
 note: ping endpoint , not protected, but allow you to hit it with requests to see it there online and responding 
 
 
+
+
+Q&A section
+
+
+
+REST Libraries & Frameworks:
+- FRAPI
+then....
+- Silex
+- Slim
+- Roll your own
+
+
+
+en.wikipedia.org/wiki/Cryptographic_nonce
+
