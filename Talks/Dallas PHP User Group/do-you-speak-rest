@@ -188,4 +188,79 @@ Prefered way of versioning is the url
 Using PUT in PHP - use curl
 
 
+Caching
+
+REST apis should have different considerations for caching.
+
+cache invalidation is a difficult thing to do in general.
+
+Types of Caching:
+
+- local resource (memcache)
+- Dedicated software/hardware (Varnish/squid)
+- external proxy / CDN (content delivery network)
+- internal browser cache
+
+Caching Rules
+
+- based on headers
+- expires (requires time sync)
+- cache-control (max-age, public/private, no-cache)
+- HTTP versus HTTPS
+- based on 'freshness' (auto expiry)
+
+always recommended to go over https if possible
+
+
+
+
+Things to consider
+
+- should all responses be cached?
+- is tere sensitivity in the data?
+- Do I need security around it?
+- what do I want to use for caching?
+
+most caching solutions are more or less interchangeable.
+
+depends on your needs/scalability
+
+
+
+
+Cache Strategy
+
+- how "cache-ey" is your data?
+- objects versus output
+- caching only differences
+- customized strategy around functionality
+
+
+Auth*
+
+== Authentication versus Authorization
+
+Authentication	- initial username/pw (they are who they say they are)
+Authorization 	- are they allowed?
+
+Auth* types
+
+- HTTP Basic/Digest (basic is super readable, Digest is a little better)
+- Public / Private Keys (private is known by client and server, hash a value, include it in a request - unhash the value based on the private key and see if the values match. A step above Basic/Digest)
+- Session Tokens (you authenticate to the API based on a login, when successfully authenticated it gives you back a session token with its own lifetime)
+- OAuth (google for tutorials)
+
+Look up hash_hmac!!!!!!
+
+
+
+Things to consider
+
+- think if everything needs to be over HTTPS
+- Think about different auth for different endpoints
+- message validation with hashing
+- the balance of need and overhead!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+note: ping endpoint , not protected, but allow you to hit it with requests to see it there online and responding 
+
 
