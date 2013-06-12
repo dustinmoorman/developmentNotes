@@ -182,5 +182,10 @@ https://mathieu.fenniak.net/aint-nobody-got-time-for-that-api-versioning/
 
 lols
 
+Prefered way of versioning is the url
+
+
+Using PUT in PHP - use curl
+
 
 
