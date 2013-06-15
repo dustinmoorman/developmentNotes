@@ -56,4 +56,42 @@ documents.
 
 Ideally: Develop 'theories' of collections, shapes, strings.
 
+What is a Theory?
 
+A theory consists of 
+	- one or more data types
+	- operations on these types
+	- laws that describe the relationships between
+	  values and operations
+
+Normally, a theory in mathematics does not describe mutations!
+
+Theories without Mutation
+
+For instance, the theory of polynomials defines the sum of 
+two polynomials by laws such as:
+
+	(a*x + b) + (c*x + d) = (a+c)*x + (b+d)
+
+But it does not define an operator to change a coefficient while
+keeping the polynomial the same!
+
+Whereas in an imperative program, one can write:
+
+	class Polynomial { double[] coefficient ; }
+
+	Polynomial p = ...;
+	
+	p.coefficient[0] = 42;
+
+The theory of strings defines a concatenation operator ++ which is
+associative:
+
+	(a ++ b) ++ c = a ++ (b ++ c)
+
+But it does not define an operator to change a sequence element
+while keeping the sequence the same!
+
+(This one, some languages do get right; e.g. Java's strings are immutable)
+
+//1.1 6:43
