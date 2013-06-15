@@ -1,5 +1,5 @@
-package com.dustinmoorman.scala.hello
+//My first Scala application :)
 
-object Hello {
-	def main(args: Array[String]): Unit = println("Hello Scala")
+object HelloScala extends App {
+  println("Hello Scala!")
 }
