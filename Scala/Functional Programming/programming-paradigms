@@ -1,4 +1,19 @@
 Programming Paradigms
 ====================
 
-Paradigm: In science, a paradigm describes distinct concepts or thought patterns in some scientific discipline.
+Paradigm: In science, a paradigm describes distinct concepts
+or thought patterns in some scientific discipline.
+
+Main programming paradigms:
+	- imperative programming
+	- functional programming
+	- logic programming
+
+Orthogonal to it:
+	- object-oriented programming
+
+Object Oriented programming can be integrated with functional 
+programming, it follows the imperative programming paradigm
+traditionally.
+
+
