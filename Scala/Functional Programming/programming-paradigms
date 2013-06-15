@@ -16,4 +16,44 @@ Object Oriented programming can be integrated with functional
 programming, it follows the imperative programming paradigm
 traditionally.
 
+Review: Imperative programming
+
+Imperative programming is about
+	- modifying mutable variables,
+	- using assignments
+	- and control structures such as if-then-else, loops, 
+	  break, continue, return
+
+The most common informal way to understand imperative programs 
+is as instruction sequences for a Von Neumann computer.
+
+Imperative Programs and Computers
+
+There's a strong correspondence between
+	Mutable variables	=>	memory cells
+	Variable dereferences	=>	load instructions
+	Variable assignments	=>	store instructions
+	Control structures	=>	jumps
+
+Problem: Scaling up. How can we avoid conceptualizing programs
+word by word?
+
+Reference: John Backus, Can Programming Be Liberated from the
+von Neumann Style? Turing Award Lecture 1978.
+
+John Backus invented Fortran in the 1950's.
+
+He noted that imperative programming was running out of steam. 
+
+In the end, pure imperative programming is limited by the "Von
+Neumann" bottleneck.
+	
+	>> One tends to conceptualize data structures word-by-word.
+
+We need other techniques for defining high-level abstractions 
+such as collections, polynomials, geometric shapes, strings, 
+documents. 
+
+Ideally: Develop 'theories' of collections, shapes, strings.
+
 
