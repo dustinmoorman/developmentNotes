@@ -87,14 +87,14 @@ TRACE (basically a ping) // browsers mainly
 
 -------
 
-GET /v1/user?a=1 Get all users
-GET /v1/user/1 	 Get User #1
-PUT /v1/user/1 Overwrite user1
-POST /v1/user create new user
-DELETE /v1/user/1 delete user 1
-PATCH /v1/user/1 partially update user 1
+GET 	/v1/user?a=1 	Get all users
+GET 	/v1/user/1	Get User #1
+PUT 	/v1/user/1 	Overwrite user1
+POST 	/v1/user 	Create new user
+DELETE 	/v1/user/1 	Delete user 1
+PATCH 	/v1/user/1 	Partially update user 1
 
-if you can say it's restful, you may not know what it is used for, but you will know what these methods SHOULD do.
+If you can say it's restful, you may not know what it is used for, but you will know what these methods SHOULD do.
 
 ------
 
