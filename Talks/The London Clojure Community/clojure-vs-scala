@@ -1,0 +1,56 @@
+The London Clojure Community: Clojure vs. Scala
+June 16, 2013
+skillsmatter.com
+
+What is Scala?
+
+Java without semi-colons...
+
+	- with a more extensive type-system
+	- an improved compiler
+	- lambdas
+	- enhanced-collection features
+	- "actors"
+
+implementations of actors
+
+	- actors in the language
+	- library actors "akka"
+
+Tools
+
+	sbt			lein2
+	Scalatest		??? (hammocks)
+	Intellij		Light Table/Emacs
+
+Community
+
+Clojurians love LISP
+	or can learn to love it
+
+Scala people hate Java
+	and can't get over it
+
+(LoL)
+
+
+Scala - Object Oriented, with functional principles.
+
+Repl versus shell
+
+(use :reload 'blah.core)			A shell requires 
+						recompilation to
+						reflect changes
+						(~console)
+
+Mix scratch and file code		Gain insight into what
+Move between the two			the code does
+
+Live in REPL, vist the Shell
+
+Type hinting versus inference
+
+There when needed			Necessarily intrusive
+
+(defin foo [^int x]			def foo(Int x) : Int
+	(inc x))				=> x + 1
