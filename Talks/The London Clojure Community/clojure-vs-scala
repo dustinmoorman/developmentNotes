@@ -54,3 +54,87 @@ There when needed			Necessarily intrusive
 
 (defin foo [^int x]			def foo(Int x) : Int
 	(inc x))				=> x + 1
+
+Type systems are necessarily intrusive.
+
+Feels topheavy, but that's the way it is when you have a type
+system.
+
+Scala type hierarchies aren't terrifying
+
+sealed abstract class Move
+case object Left extends Move
+case object Right extends Move
+case object Up extends Move
+case object Down extends Move
+
+Don't be stupid
+
+If you have a type system, use it.
+
+Don't try "X as data"
+
+"I'm programming in C, but I don't use pointers!"
+
+Homoiconicity
+
+The unifying effect of data versus the division of types.
+
+String is my serializer.
+
+Partial functions
+
+(=>> 1
+	(repeat 3)
+	(map (fn [x] (* 2)))
+	(map vector)
+	(map (fn [i] (cons (-> i first dec) i)))
+	(map (fn [v] (let [[p q]] (cons (+ p q) v)))))
+
+;; ((3 1 2) (3 1 2) (3 1 2))
+
+
+Laziness
+
+Clojure is Lazy by default		Scala is eager by default
+lazy-seq				Stream.cons
+
+The reason Scala blows out the memory often is if the function chain
+ends in:
+	-flatten
+	-reverse
+	-sort
+	-toList, toSet, toX
+
+
+Data Structures
+
+Clojure					Scala
+
+-Sequences				-Immutable
+	- Maps					-Array
+	- Sets					-Sequence
+	- Vectors				-Traversable
+						-Set
+						-Map
+						-List
+						-Stream
+					-Mutable
+						-Again and more
+
+Handling State
+
+Clojure					Scala
+-atoms					-Carry on and keep calm
+-transactions
+-message-passing
+
+Java compatibility
+
+Scala - good at it.
+
+Clojure - not OO, nothing like a switch statement.
+
+skillsmatter.com/podcast/scala/clojure-vs-scala
+//27:28
+
