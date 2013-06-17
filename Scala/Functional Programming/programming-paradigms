@@ -94,4 +94,80 @@ while keeping the sequence the same!
 
 (This one, some languages do get right; e.g. Java's strings are immutable)
 
-//1.1 6:43
+Consequences for Programming
+
+If we want to implement high-level concepts following their
+mathematical theories, there's no place for mutation.
+
+	- The theories do not admit it.
+	- Mutation can destroy useful laws in the theories.
+
+Therefore, let's
+	
+	- concentrate on defining theories for operators expressed
+	  as functions,
+	- avoid mutations,
+	- have powerful ways to abstract and compose functions.
+
+Functional Programming
+
+- In a restricted sense, functional programming means programming without
+mutable variables, assignments, loops, and other imperative control structures.
+- In a wider sense, functional programming means focusing on the functions.
+- In particular, functions can be values that are produced, consumed, and composed.
+- All this becomes easier in a functional language.
+
+Functional Programming Languages
+
+- A functional programming language enables the construction of elegant programs that
+focus on functions.
+- In particular, functions in a FP language are first-class citizens.
+
+This means
+	
+	- they can be defined anywhere, including inside other functions
+	- like any other value, they can be passed as parameters to functions
+	  and returned as results
+	- as for other values, there exists a set of operators to compose functions
+
+Some functional programming languages
+
+In the restricted sense:
+	- Pure Lisp, XSLT, XPath, XQuery, FP
+	- Haskell (without I/O Monad or UnsafePerformIO)
+
+In the wider sense:
+	- Lisp, Scheme, Racket, Clojure
+	- SML, Ocaml, F#
+	- Haskell (full language)
+	- Scala
+	- Smalltalk, Ruby
+
+Books on Functional Programming
+
+	Structure and Interpretation of Computer Programs. Harold
+	Abelson and Gerald J. Sussman. 2nd edition. MIT Press 1996.
+
+	Programming in Scala. Martin Odersky, Lex Spoon, and Bill Venners. 
+	2nd edition.
+
+	Scala for the impatient.
+
+	Orielly book - Programming in Scala.
+
+	Scala in depth.
+
+Why functional programming?
+	
+	Functional programming is becoming increasingly popular, because it offers
+	the following benefits.
+	
+	- simpler reasoning principles
+	- better modularity
+	- good for exploiting parallelism for multicore and cloud computing.
+
+	For more - see Martin Odersky's 2011 Oscon Java Keynote - 
+	"Working hard to keep it simple" (16.30 minutes)
+
+	Youtube titled: O'Reilly OSCON Java 2011: Martin Odersky, 
+	"Working Hard to Keep It Simple"
