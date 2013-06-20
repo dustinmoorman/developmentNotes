@@ -1,0 +1,26 @@
+Elements of Programming
+
+	Every non-trivial programming language provides
+		- primitive expressions representing the simplest elements
+		- ways to combine expressions
+		- ways to abstract expressions, which introduce a name for an expression by which it can then be referred to.
+
+The Read-Eval-Print Loop
+
+	Functional programming is like a calculator
+
+	An interactive shell (or REPL, for Read-Eval-Print-Loop) lets one write expressions and responds with their value.
+
+	The scala REPL can be started simply by typing `scala`
+
+Evaluation
+
+	A non-primitive expression is evaluated as follows.
+	
+	1. Take the leftmost operator
+	2. Evaluate its operands (left before right)
+	3. Apply the operator to the operands
+	
+	A name is evaluated by replacing it with the right hand side of its definition.
+
+	The evaluation process stops once it results in a value.
