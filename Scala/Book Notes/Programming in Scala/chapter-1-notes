@@ -1,0 +1,17 @@
+A Scalable Language
+
+The name Scala stands for "Scalable Language", the language is thus named because it was designed to grow with the demands of its users.
+
+- Scala runs on the standard Java platform, and interoperates seamlessly with all Java libraries.
+- It's good for scripts that pull together Java components.
+- Better for building large systems and frameworks of reusable components.
+
+Scala is a blend of OOP and Functional Programming concepts in a statically typed language.
+
+(the ultimate hybrid)
+
+The combination of both paradigms in Scala make it possible to express new kinds of programming patterns and component abstractions. It also fosters a legible and concise programming style.
+
+Maps in Scala are not language syntax, they are library abstractions that you can extend and adapt.
+
+
