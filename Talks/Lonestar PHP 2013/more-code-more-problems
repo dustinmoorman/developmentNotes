@@ -1,0 +1,62 @@
+Lonestar PHP 2013
+Edward Finkler
+More Code More Problems
+
+1. Learn languages, Not frameworks
+
+Frameworks aren't a bad way to get to a productive level, but probably not a way to become a great developer.
+
+Be a PHP developer, not a ZF/CodeIgniter developer.
+
+Why?
+More Versatile, of course.
+
+Full Stack frameworks are complex.
+
+Framework skills aren't portable across languages/environments.
+
+
+2. Build small things
+
+- small stuff is good
+- harder to screw it up
+
+Build small things with simple purposes.
+
+Solve Single Problems.
+
+If you start getting "out of scope", it's time to break a task apart and solve it on its own.
+
+Network these together so it solves a larger problem.
+
+3. Less code > More code
+
+- manage less code 
+- navigation takes less time
+- tracing execution takes less time
+- problems are solved quicker
+
+
+Support Less Code.
+
+JUSTIFY EVERY LINE!!!!!!!!!!!!!!
+
+Be aware of the code you bring in to your application from external sources.
+
+Because you will have to be responsible for it.
+
+Code needs to be easy to understand, understanding means things get fixed quicker.
+
+
+Code needs to be easy to verify.
+
+- Needs to be simple to test.
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! READABILITY is a FEATURE.
+
+Value clarity over cleverness.
+
+Consider how quickly another developer will be able to understand it at first glance.
+
+
+
