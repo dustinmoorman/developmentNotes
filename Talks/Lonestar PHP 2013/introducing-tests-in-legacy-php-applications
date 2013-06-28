@@ -74,3 +74,16 @@ Test Introduction Algorithm
 5. Write tests.
 6. Make changes and refactor. 
 
+
+Whether the job is big or small, do it right or not at all.
+
+Not at all is never really an option :)
+
+Freedom to refactor without Fear.
+
+Fearless refactoring!
+
+When refactoring legacy functions into OOP, go through and break out the system into objects, and rewrite the function to be a wrapper for instantiating the new objects necessary for the refactored functionality.
+
+
+http://speakerdeck.com/jcarouth
