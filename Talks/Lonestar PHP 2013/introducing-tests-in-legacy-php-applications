@@ -1,0 +1,50 @@
+Lonestar PHP 2013
+Introducing Tests in Legacy PHP Applications
+
+Working Effectively with Legacy Code - Michael C. Feathers
+Action items:
+READ THIS BOOK
+
+
+What he said.
+
+
+Before how to introduce tests in legacy code...
+
+What is Legacy code?
+
+- when you code like it's 1999
+- code you just found out is in prod, it's working, but you don't know how.....
+- code that is written for a lang/framework, that is at least one generation behind.
+
+Legacy code is 
+
+- in production
+- "TEST RESISTANT"
+- difficult to change
+- often unstructured
+- likely incomprehensible
+
+
+SHOULD VS MUST
+
+- I have to change the code before I write a test
+
+Resist the urge to Rewrite.
+
+^ the nuclear option.
+
+Legacy code is in PRODUCTION, it probably works in a certain way that you may not know to replicate.
+
+Also have to implement every single exception that the current application is expecting to see.
+
+*** Refactor only what is necessary for Tests. ***
+
+Legacy Code Change Algorithm
+1. Identify change points
+2. Find test points
+3. BREAK DEPENDENCIES
+4. Write Tests
+5. Make changes and refactor
+
+Unit tests ^
