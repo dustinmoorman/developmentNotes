@@ -48,3 +48,29 @@ Legacy Code Change Algorithm
 5. Make changes and refactor
 
 Unit tests ^
+
+TESTING: it's a mechanism of feedback.
+
+It allows you to make changes to your code without breaking things, and provides feedback if you do.
+
+A) Acceptance Tests - prior to implementation. Masquerade as Pinning tests.
+
+	Pinning Test - a test that pins down or nails down
+	 certain behavior based on certain inputs.
+
+You can write Acceptance Tests in Behat.
+
+Behat - designed to test business applications.
+
+In web apps, there's a lot more involved than just code. Such as API's and services.
+
+Take a look at Mink - it is a WEB acceptance Testing framework.
+
+Test Introduction Algorithm
+1. Identify what you need to change.
+2. Write pinning tests for impacted behavior.
+3. Locate test point for unit test.
+4. BREAK DEPENDENCIES.
+5. Write tests.
+6. Make changes and refactor. 
+
