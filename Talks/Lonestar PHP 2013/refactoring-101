@@ -1,0 +1,39 @@
+
+When to refactor?
+
+No special time, do it in short bursts.
+
+Rewrite vs refactor
+
+Reasons to NOT rewrite
+	- budget
+	- time
+	- retain business logic
+
+Rewrite = lazy way to avoid bad code (perceived)
+Refactor = best teacher
+
+Rewrite dilemma, vicious circle of HELL!
+
+As you're refactoring, dont worry about optimization. 
+
+Refactoring will show you where your bottlenecks are.
+
+Don't mix refactoring and optimization, do one, then the other.
+
+After the code is flexible and decoupled, OPTIMIZE!
+
+
+RECAP
+
+Do not refactor a broken application
+Always have tests in place prior to refactoring
+leave code cleaner than you got it
+try NOT to rewrite
+Learn to "smell" problems
+Love iteration!
+
+
+
+https://github.com/adamculp/refactoring101
+http://www.geekyboy.com
