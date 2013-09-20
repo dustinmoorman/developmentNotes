@@ -1,0 +1,6 @@
+test file
+
+git clone https://github.com/dustinmoorman/developmentNotes.git
+git add <filename>
+git commit -m "committing bla bla"
+git push origin master
