@@ -1,0 +1,89 @@
+Lonestar PHP 2013
+Introducing Tests in Legacy PHP Applications
+
+Working Effectively with Legacy Code - Michael C. Feathers
+Action items:
+READ THIS BOOK
+
+
+What he said.
+
+
+Before how to introduce tests in legacy code...
+
+What is Legacy code?
+
+- when you code like it's 1999
+- code you just found out is in prod, it's working, but you don't know how.....
+- code that is written for a lang/framework, that is at least one generation behind.
+
+Legacy code is 
+
+- in production
+- "TEST RESISTANT"
+- difficult to change
+- often unstructured
+- likely incomprehensible
+
+
+SHOULD VS MUST
+
+- I have to change the code before I write a test
+
+Resist the urge to Rewrite.
+
+^ the nuclear option.
+
+Legacy code is in PRODUCTION, it probably works in a certain way that you may not know to replicate.
+
+Also have to implement every single exception that the current application is expecting to see.
+
+*** Refactor only what is necessary for Tests. ***
+
+Legacy Code Change Algorithm
+1. Identify change points
+2. Find test points
+3. BREAK DEPENDENCIES
+4. Write Tests
+5. Make changes and refactor
+
+Unit tests ^
+
+TESTING: it's a mechanism of feedback.
+
+It allows you to make changes to your code without breaking things, and provides feedback if you do.
+
+A) Acceptance Tests - prior to implementation. Masquerade as Pinning tests.
+
+	Pinning Test - a test that pins down or nails down
+	 certain behavior based on certain inputs.
+
+You can write Acceptance Tests in Behat.
+
+Behat - designed to test business applications.
+
+In web apps, there's a lot more involved than just code. Such as API's and services.
+
+Take a look at Mink - it is a WEB acceptance Testing framework.
+
+Test Introduction Algorithm
+1. Identify what you need to change.
+2. Write pinning tests for impacted behavior.
+3. Locate test point for unit test.
+4. BREAK DEPENDENCIES.
+5. Write tests.
+6. Make changes and refactor. 
+
+
+Whether the job is big or small, do it right or not at all.
+
+Not at all is never really an option :)
+
+Freedom to refactor without Fear.
+
+Fearless refactoring!
+
+When refactoring legacy functions into OOP, go through and break out the system into objects, and rewrite the function to be a wrapper for instantiating the new objects necessary for the refactored functionality.
+
+
+http://speakerdeck.com/jcarouth

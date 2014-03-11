@@ -1,0 +1,103 @@
+Lonestar PHP 2013
+Mocking Dependencies in PHPUnit
+Matt Frost
+
+
+What's a dependency?
+-Unit test context
+-A unit(s) of code that adds functionality to another unit fo code
+-Think system dependency
+
+Why should we mock them?
+-Test a single unit of code in isolation
+-a bug in a dependency makes your test a :uessing game
+-we only want to know that the code we're testing works
+
+If you see the `new` keyword in a method, you can go ahead and say 
+it can't be mocked.
+
+You'll always be working with true objects. You'll always be doing the 
+real deal.
+
+DI
+
+Dependencies become properties in the object in which they are used
+
+Paramount for mocking a unit test
+
+a) these can have accessors/mutators
+b) constructor injection
+
+Test Doubles
+
+Stand in for actual objects (think stunt doubles)
+
+Can simulate functionality from those objects
+
+can fulfill the requirements of a type hinted method
+
+can be used to make sure a method on the mock is called.
+
+
+
+Think stunt doubles. If something happens to the original actor, the
+movie is over! We take the guy that looks like him and let him do the
+risky stuff.
+
+A few more points
+
+- can't directly mock private or protected methods
+- only mock what you need to test
+- in a pinch, reflection will help test private / protected methods
+
+
+In accordance to mocking what you need to test -
+When you try and mock everything, tests get hard to follow.
+
+A good way to test private / protected methods include testing 
+methods that use them.
+
+Unit Tests shouldn't be dependent on external data source availability.
+
+- Know the difference between Intergration tests and Unit tests.
+
+"How do I know if my query is right?" 
+
+However it is, don't confuse that with a unit test's responsibility.
+
+Unit tests test CODE.
+
+Integration tests are extremely valuable too, but know the difference!
+
+(ex, sara palin / para salin.... Know the difference!)
+
+- Mock 
+- Stub 
+- Dummy
+- Spy
+
+Mock 
+
+- Expectation
+- Method
+- Parameters (if applicable)
+
+
+Test Stub
+
+- Ensures a mehtod is called correctly
+- Generates a "fake response"
+- Response allows for different cases to be tested
+
+Response
+
+-Literally declaring what the response will be
+- Doesn't have to be a value, can throw exceptions
+
+Dummy
+
+-placeholder
+-has no expectations or behavior
+-satisfies parameter list
+
+

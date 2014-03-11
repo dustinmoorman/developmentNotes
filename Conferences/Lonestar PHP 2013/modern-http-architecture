@@ -1,0 +1,99 @@
+Lonestar PHP 2013
+Modern HTTP Architecture
+
+reveal.js
+
+Web/HTTP
+
+Theory,
+
+each application is unique and has its own challenges.
+
+Traditional Architecture
+
+request <----> internet <-----> application server
+
+Modern Architecture
+
+request <-----> internet <-----> reverse proxy
+				-a -a -a -a -application server
+
+Easy to scale
+
+Efficient scaling?
+
+One application server
+
+- if part goes down, the rest does too under one app serv
+- having shit spread out allows things to fail and it be ok if they are components.
+
+Multi device world
+
+internet enabled tv <-----------> internet <------> reverse proxy
+smartphone <----------------/			-a -a -a -a -application server
+tablet <--------------------/
+
+Small, simple, working together.
+
+Having an image processor application, that's all it does.
+Having a commenting application, that's all it does.
+
+THIS IS IMPORTANT!!!!
+
+"Write programs that do one thing, and do it well. Write programs to work together,
+Write programs to handle text streams, because that is a universal interface."
+
+Modernize it!
+
+"Write WEB SERVICES that do one thing, and do it well. Write WEB SERVICES to work together,
+Write WEB SERVICES to handle JSON data, because that is a universal interface." 
+
+What's it look like?
+
+App Server
+------------------------------------.
+User Auth		Sessions     |
+Content			Random Models|
+-------------------------------------'
+
+
+Now it's all modules that talk between each other.
+
+Service Oriented Architecture
+
+"Enterprise" lolz
+
+If you've written your own database or cache server, you've done this.
+
+Start thinking about your code that way
+
+
+Replace services at will
+
+Use the right tool for the job.
+
+
+nodeload.github.com
+
+Scale Services Separately!!!!!
+
+
+If you scale them together it's not as easy, it takes more planning.
+
+HaaS
+
+HTML AS A SERVICE
+
+take the application layer and replace it with something that is an HTML service
+
+ACTION ITEMS:
+
+Varnish
+Nginx
+
+Implement and use this technology.
+
+* 12 Factor (12factor.net) 12 factors of software development that works well in the cloud environment.
+
+tswicegood.github.io/modern-http-architecture/
+
