@@ -4,3 +4,5 @@ silex - an intro
 webrtc
 sockets.io
 zfcadmin
+	- enable
+	- apply auth
