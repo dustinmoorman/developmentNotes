@@ -12,5 +12,7 @@ Step 2 - Packagist
 -- Create user (if applicable)
 -- Submit Package
 --- Pass URL
-
+-- Set up Github Service Hook
+---- Authorize Packagist 
+---- place token in GH
 
