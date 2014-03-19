@@ -1,0 +1,10 @@
+Step 1 - Create Composer File
+https://getcomposer.org/doc/04-schema.md
+-- composer.json
+-- Copy from Zend Framework
+-- set the name & namespace
+-- Throw down a description
+-- licesnse information
+-- Authors
+-- PHP Version
+
