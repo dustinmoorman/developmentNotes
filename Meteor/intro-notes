@@ -1,0 +1,18 @@
+Meteor notes!
+
+== What is Meteor?
+
+two things:
+
+	- A lib of prewritten packages, self-contained modules that you might need in a realtime app. Several included toolsets of functionality you might use in any app running with meteor. (Ex - webapp, templating, email / Meteor Account series - account-password, accounts-facebook)
+
+
+	- A command line tool called `meteor`, which is a build tool like make or rake, or the internals of Visual Studio. Carries out any necessary build steps like package fetching or building npm modules.
+
+
+The goal of Meteor is that everything should work identically in the browser and on the server. (Wherever it should work identically and make sense.)
+
+* Note - check out Meteorite.
+
+
+
