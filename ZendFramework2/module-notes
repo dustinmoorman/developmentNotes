@@ -1,0 +1,1 @@
+When building ZF2 modules, any configuration changes belong in the config/autoload directory.
