@@ -13,7 +13,8 @@ Zf2BaseApplication!!!!! tutorial on setup! lol
 
 Wdg Libs
 
-composer
+Composer
+	- Pulling from Github instead of packagist
 
 Meteor js
 
