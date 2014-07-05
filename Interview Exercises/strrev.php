@@ -4,7 +4,7 @@
 
 $str = 'Weekend';
 
-function stringreversal($string){
+function stringReversal($string){
   $reversed_str = '';
 
   for($pos = strlen($string) - 1;$pos >= 0; $pos--){
@@ -14,4 +14,4 @@ function stringreversal($string){
 }
 
 echo "Original String: " . $str . "\r\n";
-echo "Reversed: " . stringreversal($str);
+echo "Reversed: " . stringReversal($str);
