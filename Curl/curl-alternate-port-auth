@@ -1,0 +1,41 @@
+I needed to use cURL in a php script to download data using not only SSL for the server authentication but also for client authentication. 
+On a default install of Fedora, setting up the proper cURL parameters, I would get an error: 
+
+$ php curl.php 
+Peer certificate cannot be authenticated with known CA certificates 
+
+The data on http://curl.haxx.se/docs/sslcerts.html was most useful. Indeed, toward to bottom it tells you to add a missing link inside /etc/pki/nssdb to use the ca-bundle.crt file. You do it so: 
+
+# cd /etc/pki/nssdb 
+# ln -s /usr/lib64/libnssckbi.so libnssckbi.so 
+
+Now you can do client authentication, provided you have your certificate handy with: 
+
+<?php 
+$data = "<soap:Envelope>[...]</soap:Envelope>"; 
+$tuCurl = curl_init(); 
+curl_setopt($tuCurl, CURLOPT_URL, "https://example.com/path/for/soap/url/"); 
+curl_setopt($tuCurl, CURLOPT_PORT , 443); 
+curl_setopt($tuCurl, CURLOPT_VERBOSE, 0); 
+curl_setopt($tuCurl, CURLOPT_HEADER, 0); 
+curl_setopt($tuCurl, CURLOPT_SSLVERSION, 3); 
+curl_setopt($tuCurl, CURLOPT_SSLCERT, getcwd() . "/client.pem"); 
+curl_setopt($tuCurl, CURLOPT_SSLKEY, getcwd() . "/keyout.pem"); 
+curl_setopt($tuCurl, CURLOPT_CAINFO, getcwd() . "/ca.pem"); 
+curl_setopt($tuCurl, CURLOPT_POST, 1); 
+curl_setopt($tuCurl, CURLOPT_SSL_VERIFYPEER, 1); 
+curl_setopt($tuCurl, CURLOPT_RETURNTRANSFER, 1); 
+curl_setopt($tuCurl, CURLOPT_POSTFIELDS, $data); 
+curl_setopt($tuCurl, CURLOPT_HTTPHEADER, array("Content-Type: text/xml","SOAPAction: \"/soap/action/query\"", "Content-length: ".strlen($data))); 
+
+$tuData = curl_exec($tuCurl); 
+if(!curl_errno($tuCurl)){ 
+  $info = curl_getinfo($tuCurl); 
+  echo 'Took ' . $info['total_time'] . ' seconds to send a request to ' . $info['url']; 
+} else { 
+  echo 'Curl error: ' . curl_error($tuCurl); 
+} 
+
+curl_close($tuCurl); 
+echo $tuData; 
+?>
