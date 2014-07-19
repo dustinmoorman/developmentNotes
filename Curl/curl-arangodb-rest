@@ -1,0 +1,82 @@
+Using ArangoDB with PHP
+
+Coding with a NoSQL data base like ArangoDB can be made more complicated then need be. A simple solution to code for ArangoDB is to use the REST interface directly.
+All you need is a few initialization variables and a small function to ease the typing - and of cause install the php5-curls module... 
+See ArangoDB REST API documentation for options and request types.
+
+<?php
+// Initialize options for REST interface
+$adb_url="http://127.0.0.1:8529";
+$adb_option_defaults = array(
+    CURLOPT_HEADER => false,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_TIMEOUT => 2
+  ); 
+
+// ArangoDB REST function.
+// Connection are created demand and closed by PHP on exit.
+function adb_rest($method,$uri,$querry=NULL,$json=NULL,$options=NULL){
+  global $adb_url,$adb_handle,$adb_option_defaults;
+
+  // Connect 
+  if(!isset($adb_handle)) $adb_handle = curl_init();
+
+  echo "DB operation: $method $uri $querry $json\n";
+
+  // Compose querry
+  $options = array(
+    CURLOPT_URL => $adb_url.$uri."?".$querry,
+    CURLOPT_CUSTOMREQUEST => $method, // GET POST PUT PATCH DELETE HEAD OPTIONS 
+    CURLOPT_POSTFIELDS => $json,
+  ); 
+  curl_setopt_array($adb_handle,($options + $adb_option_defaults)); 
+
+  // send request and wait for responce
+  $responce =  json_decode(curl_exec($adb_handle),true);
+
+  echo "Responce from DB: \n";
+  print_r($responce);
+  
+  return($responce);
+}
+?>
+
+Here's some examples:
+
+<?php
+// Create a collection
+$responce = adb_rest("POST","/_api/collection","",'{"name" : "test"}');
+
+// Create a document 
+$responce = adb_rest("POST","/_api/document","collection=test",'{ "hello" : "World" }');
+
+// List documents in a collection
+$responce=adb_rest("GET","/_api/document","collection=test");
+
+// Change document
+$document_handle=$responce['documents'][0];
+$responce=adb_rest("PATCH",$document_handle,"",'{ "hello" : "World of mine" }');
+
+// Show document
+$responce=adb_rest("GET",$document_handle);
+
+// Search
+$responce=adb_rest("POST","/_api/cursor","",'{ 
+  "query" : "FOR t IN test RETURN t",
+  "count" : true,
+  "batchSize" : 50
+}');
+
+while($responce['hasMore'])
+  $responce=adb_rest("PUT","/_api/cursor/".$responce['id']);
+
+// Delete document
+$responce=adb_rest("DELETE",$document_handle);
+
+// DB Delete collection
+$responce=adb_rest("DELETE","/_api/collection/test");
+
+// to handle errors, add something like this:
+if($responce['error']) die ("can't create collection");
+
+?>
