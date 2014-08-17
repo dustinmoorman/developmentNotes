@@ -1,0 +1,6 @@
+colorscheme grb256
+set nu
+set expandtab
+set tabstop=4
+~
+
