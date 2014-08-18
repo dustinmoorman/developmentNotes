@@ -2,5 +2,4 @@ colorscheme devbox-dark-256
 set nu
 set expandtab
 set tabstop=4
-~
 
