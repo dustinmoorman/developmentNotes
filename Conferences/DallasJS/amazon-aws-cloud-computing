@@ -113,5 +113,12 @@ SNS - server to server and server to man communication
 SQS - on demand queuing service
 SWF - simple workflow
 
+SWF is a workflow engine. (think squigg)  
 
+Whether or not to replace a tier?
+- Does high availability matter?
+- Can i achieve the uptime? will it be cheaper?
+- Will I save in terms of code changes?
+
+Amazon instances are by default available to the public world, you must take steps to lock it down.
 
