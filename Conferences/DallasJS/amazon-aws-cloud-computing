@@ -122,3 +122,76 @@ Whether or not to replace a tier?
 
 Amazon instances are by default available to the public world, you must take steps to lock it down.
 
+Amazon provides 
+
+-Security groups (attached to every server)
+	- which servers can access this server,
+	- which ports they can access it with
+	- only whitelist, no blacklist - bad for DoS
+-VPC (Virtual Private Cloud)
+	- anything you spin up in the vpc gets a private IP and not a public IP
+	- Cloudfront would become the "front door"
+	- app server, RDS, etc, are protected by the VPC
+
+Using security groups, the web server could talk only to the app server, and the app server could talk explicitly to the RDS instance and Elasticache, but nodes like Elasticache would only talk to the app server. 
+	- ie, nodes in the vpc should be locked down via security groups to talk to only the nodes you expect the server to talk to.
+
+
+
+ELB - Elastic Load Balancer, also a good added security measure.
+
+Best way to get in to the VPC is via VPN.
+
+NAT servers can be dropped in to VPC's to facilitate internet access within a VPC.
+
+Nice
+- anything inside the VPC can talk to the outside world using the NAT
+- servers within the VPC are protected
+
+Not nice
+- NAT could turn in to a single point of failure for the infrastructure
+- redundant NATS could be a solution
+
+ASG - Autoscaling groups
+
+1. autoscale infrastructure based on traffic
+
+- IP addresses will be assigned randomly
+- instances are controlled by some intelligence that you parameterize
+- instances will be in and out
+- mindset changes in the code will need to take place to leverage (usually)
+- but this is where the cloud shines
+
+2. facilitate high availability
+
+- designed to keep at least one server up
+- will restart if something unrecoverably happens
+
+Dealing with spikes
+
+- usually caches will absorb spikes
+- if it makes it back to the db, you can use read-replicas.
+- writes will use one, but db read can scale up.
+
+Provision IOPS (relatively new) (expensive) (racks up fast) allows you to control the db pipe.
+
+Scaling services
+- Autoscaling groups (you create teh image, the group, etc)
+- Elastic Beanstalk (one size fits all, drop in and May work (may not))
+- OpsWorks (integration with Chef to specify what's needed. Will spin up a new server that meets this criteria)
+
+puppet integration is "on the way"
+
+CloudFormation
+- Amazon specific
+- Infrastructure-as-code
+- build AWS resources with one click
+- push updates to the stack conveniently
+- any amazon resource can be specified, including startup scripts
+- takes about 7 mins to spin up an entire network, from nothing.
+- true, full automation
+- updates are convienently pushable
+- differential update
+- raises bus factor of infrastructure (for small business)
+- not easy to start with, has a learning curve, but pays off in the long run
+
