@@ -8,3 +8,33 @@ Cloud computing has turned computing into a utility.
 20% of the top technology companies have moved to virtualizing.
 
 high emphasis on pay per use 
+
+Treat servers as cattle, not pets
+
+pets are 
+- cutely named
+- unique, special, cared for
+- taken care of when ill
+
+cattle are
+- called by numbers,
+- replaced when ill,
+- you need more, you buy more
+
+Automate, dont document.
+- automate network creation
+- installation of software
+- error detection
+- error handling
+
+"Friends don't let their friends build data centers"
+	- Charles Phillips, CEO, Infor
+	AWS Summit 2014
+
+AWS 
+- largest provider
+- streamlined interface
+- most mature automation.......... for NOW!
+- features
+
+
