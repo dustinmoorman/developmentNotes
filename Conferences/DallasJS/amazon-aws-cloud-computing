@@ -195,3 +195,26 @@ CloudFormation
 - raises bus factor of infrastructure (for small business)
 - not easy to start with, has a learning curve, but pays off in the long run
 
+Autoscaling
+- separate stateful and state-less services
+- do not rely on server IP addresses being fixed
+- bake your server's images
+
+Instead of relying on IP's, update DNS entries to point to those acting servers.
+
+client-db.clientname.com => 10.10.x.x
+
+Pretty for the code, harmless for attackers to get the hostname because it's a private IP address that it needs to resolve to.
+
+Make sure the image you provide can start itself and run its applications at startup.
+
+Take aways
+- servers are cattle, always assume there will be more in the end than what you've started with
+- dont use IP and host name in the code (route53 DNS above is ok, not the actual AWS hostname)
+- use an existing service whenever possible
+- dont mix stateful and stateless services
+- script application deployment or use configuration management
+- setup local developer environments (dont expose this)
+
+
+
