@@ -49,4 +49,38 @@ the evolution phase
 
 those who find cloud "expensive" or "not for them" are in the first tier of cloud integration.
 
+Worry list
+-----------
+- Db backup
+- Asset backup
+- Web uptime
+- App uptime
+- DB uptime
+- Static page uptime
+- traffic spikes
+- DoS attacks
+- Security breach
+
+
+DoS attacks - Amazon will ban attacking IPs if a DoS attack is detected.
+
+NoSQL - DynamoDB
+Queuing - SQS (Simple Queue Service)
+Caching - Elasticache
+page caching - Cloudfront ('varnish')
+
+Key features are high availability and redundancy of data.
+
+RDS - MySQL, restricted to a GUI, but the application will be available to port 3306.
+
+Amazon manages RDS. Same for Elasticache.
+
+CloudFront - page caching and CDN. In the same dashboard as the rest of the infrastructure, so it makes integration easy. Cloudflare is a good alternative.
+
+Page level caching is one of the most underrated features in web development, and Cloudfront costs very low per month, relatively high traffic websites will have a cloudfront bill in the $1.50 range/mo.
+	- you pay by storage, its $1/gb a month.
+
+Caching is very cost effective if most pages are served by CloudFront, usage costs of a web server are reduced.
+
+
 
