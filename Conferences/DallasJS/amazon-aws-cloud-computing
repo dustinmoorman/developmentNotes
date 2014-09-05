@@ -37,4 +37,16 @@ AWS
 - most mature automation.......... for NOW!
 - features
 
+Architecting for AWS
+
+3 step process
+---------------
+1 replace tiers with AWS services
+2 secure
+3 leverage elasticity
+
+the evolution phase
+
+those who find cloud "expensive" or "not for them" are in the first tier of cloud integration.
+
 
