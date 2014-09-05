@@ -82,5 +82,36 @@ Page level caching is one of the most underrated features in web development, an
 
 Caching is very cost effective if most pages are served by CloudFront, usage costs of a web server are reduced.
 
+Openstack Swift is a good S3 alternative.
+
+Amazon RDS
+- MySQL
+- Postgres
+- SQL Server
+- Oracle
+
+SQL server being the weakest implementation within RDS.
+
+Cloudfront (think varnish)
+- geographically distributed.
+
+Elasticache
+- in-memory caching tier for your app
+- spin up with a single click
+- redis and memcached are available
+- high availability
+
+S3
+- high availability
+- fast
+
+DynamoDB
+-NoSQL as a service
+
+Route53 - amazon dns server
+SNS - server to server and server to man communication
+SQS - on demand queuing service
+SWF - simple workflow
+
 
 
