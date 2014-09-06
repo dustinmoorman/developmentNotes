@@ -1,0 +1,30 @@
+Dustin Moorman
+10/16/2012
+Logic and Comparison
+--------------------------------
+
+Boolean ---------
+
+true or false
+
+NOT AND OR
+
+A | Not a
+----------
+T | F
+F | T
+
+
+A | B | A and B | A or B
+------------------------
+F | F | F       | F
+F | T | F       | F 
+T | F | F       | F
+T | T | T       | F
+
+
+a = True
+b = False
+
+*letters must be capitalized.
+

@@ -1,0 +1,3 @@
+http://learnpythonthehardway.org/book/
+
+-good reference as long as it's available
