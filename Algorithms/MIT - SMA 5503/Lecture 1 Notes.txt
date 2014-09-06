@@ -1,0 +1,170 @@
+Lecture 1 Notes
+MIT - Introduction to Algorithms
+http://www.youtube.com/watch?v=JPyuH4qXLZ0&noredirect=1
+------------------------------
+
+
+Analysis of Algorithms -------
+
+"The theoretical study of computer program performance and resource usage"
+
+-how to make things fast
+-communication
+-memory
+
+"Whats more important than performance?"
+-stability
+-maintainence
+-accuracy
+-security
+-features
+-functionality
+-modularity
+-user friendly
+
+"Why study algorithms and performance if it's at the bottom of the heap?"
+
+-sometimes performance draws the line between feasable and infeasable.
+-algorithms are on the cutting edge of entrepaneurship!
+-algorithms give a language to describe program flow.
+
+"Performance is like money"
+-what good does a stack of 100$ bills do for you?
+-food and water is far more desireable than solely money.
+
+Speed is fun, thats why we study performance.
+
+
+Oldest probelm: Sorting------------------------------------
+
+Sorting contains many algorithmic techniques.
+
+Input: sequence <a1, a2, an > of numbers.
+Output: Permutation of those numbers.
+
+-a permutation is a rearrangement of those numbers
+$ = "such that"
+
+$a1 <= a2 .. <= an
+
+Algorithm: Insertion Sort-----
+
+Insertion-Sort(A,n) //Sorts A[1 .. n]
+	for j <- 2 to n
+		do key
+
+*********-------INCOMPLETE PSEUDO CODE
+
+Runnning time----------------------------------------------
+Running time of this algorithm depends on a lot of things.
+-Input
+--If the input is already sorted, the insertion sort has very little work to do.
+--If the input is reverse sorted, there is a lot of work to do.
+--It depends on the input size
+--parameterize in the input size.
+
+-Want upper bounds on the running time.
+--Represents a guarantee to a user.
+
+Kinds of analysis------------------------------------------
+
+1.Worst case analysis (usually)
+-T(n) = Maximum time on any input of size n.
+--Without maximum, T(n) is just a relation.
+
+2.Average case analysis (sometimes)
+-T(n) = Expected time on all input of size n.
+--It's the time of every input times the probability that it will be that input
+--Weighted Average
+--How to know what the probability of a particular input occurs is in a given situation?
+---I don't, must make assumption, assumption called?
+---Assumption of statistical distribution of inputs, otherwise expected time doesn't mean anything.
+---Uniform Distribution: All inputs are equally likely to be it.
+
+3.Best Case analysis (bogus)
+-Interestingly, the most things that get sorted are things that are already sorted.
+--You can take any algorithm you want and check for a specific answer, and stop there for efficiency.
+
+------------------------------------------------------------
+
+Insertion Sort's worst case time?
+
+-depends on computer you're running on.
+-relative speed: we usually compare to relative speed (on same machine)
+-absolute speed: (on different machine)
+
+BIG IDEA of Algorithms!!!!$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+The ability of taking a messy situation and improve it with processes.
+
+Asymptotic Analysis - to ignore machine dependent constants, and look instead of at the running time, 
+look at the growth of the running time.
+
+1.Ignore machine-dependent constants
+2.Look at growth of T(n) as n-><infinite>
+
+Asymptotic notation ---------------------------------------
+
+Theta notation o - Pretty easy to master, drop low order terms,
+			and ignore leading constants.
+
+Example: 3n^3 + 90n^2 - 5n + 6046 = Theta(n^3)
+
+- n^3 is larget than n^2 or anything else,
+- so drop all the other constants, and that's Theta(n^3)
+
+Engineering way of theta notation. There's a mathematic way also.
+
+As n-> <infinity>
+Theta(n^2) alg always beats a Theta(n^3) alg.
+-Even if you ran the Theta(n^2) on a slow computer, and Theta(n^3) on a fast computer.
+-Satisfies the issue of being able to compare relative and absolute speed. 
+--We're able to do this regardless of the platform.
+--On different systems we may get different constants for runtime, but the asymptotics won't change.
+
+
+Insertion Sort Analysis -----------------------------------
+
+Worst case: when input is reverse sorted.
+
+T(n) = (summation: j= 2 | n)*Theta(j) = Theta(n^2)
+
+-arethmatic series (summing 1 + 2 + 3 + 4 + 5 + 6 ~ n) == Theta(n^2)
+
+Theta is a weak notation. Strong notations are LEibliz's notation from calculus.
+
+Is insertion sort fast? -------------------------------------
+
+for small end, it's moderately fast, but not at all fast for
+large end.
+
+Merge Sort----------------------------------------------------
+
+Merge Sort A[1..n]
+1. If A = 1, done
+2. Recursively Sort A[1..[n/2]] and
+	A[[n/2]+1..n]
+3. Take two lists that we've done, merge
+
+
+Key subroutine - Merge
+
+2 lists
+
+20       12
+13       11
+7        9
+2        1
+
+To merge these two, produce a sorted list from both.
+
+First observe where is the smallest element of the two elements
+-head of the first list, head of the second.
+
+-repeat for n
+
+Time = Theta(n) on n total elements. 
+-Sometimes called linear time, because it's not quadratic
+
+
+
