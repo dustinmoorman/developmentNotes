@@ -1,0 +1,343 @@
+JavaScript: The Good Parts
+Google Tech Talk by Douglas Crockford
+---------------------------------------------------------------------------------------
+http://www.youtube.com/watch?v=hQVTIJBZook
+
+Bad parts:
+-Global Variables
+- + adds and concatenates
+- Semicolon insertion
+- typeof
+- with and eval
+- phony arrays
+- == and != 
+- false, null, undefined, NaN
+
+Worse part: Global variables; JavaScript doesn't have a linker, so the way the 
+compilation units get bound together is, they all get tossed in to a common global
+namespace. Terrible reliability and worse security problems.
+
++ Adding and concatenation stems from Java, which was strongly typed, however
+in loosely typed JavaScript, this is the source of many unpredicted problems.
+
+Semicolon insertion .... always use them.
+
+typeof operator. Good. 
+- typeof Object 	? Object 
+- typeof Array 	? Object
+- typeof null		? Object
+
+See the problem here?
+
+Examples of bad type coercion:
+- ' ' == '0' 					// false
+- 0 == ' ' 					// true
+- 0 == '0' 					// true
+- false == 'false' 		// false
+- false == '0' 				// true
+- false == undefined 	// false
+- false == null			// false
+- null == undefined		// true
+- " \t\r\n " == 0			// true
+
+'with' statement, well intentioned, but just by being in the language makes
+applications slower, even if you use it or not.
+
+Eval. If you're ever thinking about using eval, you're probably looking at something
+the wrong way. Close the editor, step away from the computer, read Doug
+Crockford's book and give it another go afterward. 
+
+Always use the triple = operator, type coercion is horrible with the equality (==) 
+operator in JavaScript.
+
+Good features that interact badly:
+- Objects can inherit from other objects.
+- Functions can be members of objects.
+- for..in statement mixes inherited functions with the desired data members.
+
+'for in is troublesome'
+
+- Design question: Should for..in do a shallow skim or a deep dredge?
+- Decision: Deep dredge. The programmer must explicitly filter out the 
+deep members.
+- Except: They didn't tell anybody!
+- Consequence: Lots of confusion about how to use for..in.
+
+Blockless statements are a bad practice.
+
+JavaScript has only one number type - floating point.
+
+~~~~~~~~~~~~~~~~ THE GOOD PARTS ~~~~~~~~~~~~~~~~~~~~~
+* Lambda
+* Dynamic Objects
+* Loose Typing
+* Object Literals
+
+Lambda - powerful, safe, smart, flexible.
+
+Dynamic Objects -  You can take any object at any time and add any
+property to it or remove any property from it. You don't have to derive a
+class to change a classes functionality.
+
+Inheritence - Two Schools
+-Classical
+-Prototypal
+
+Prototypal inheritence is so powerful but less understood.
+
+Prototypal Inheritence
+- Class free
+- Objects inherit from objects.
+- An object contains a link to another object:
+	Delegation. Differential Inheritence.
+	
+	var newObject = Object.create(oldObject);
+	
+	newObject					oldObject
+	__proto__ ---------------->
+
+Differential Inheritence
+
+All objects contain only what is neccessary for what makes
+it different than its parent object!!!!!
+
+In JavaScript, an object contains a hidden link to another object
+from which it inherits stuff in a process called delegation.
+
+For a long time the language had mixed feelings or contradictory
+ideas about its prototypal inheritence model, so it never included
+an operator for actually making new objects which inherit from
+other objects.
+
+Object.create will make a new object which inherits from an old
+one.
+
+//Prototypal Inheritance Object.create implementation
+
+if(typeof Object.create !== 'function'){
+	Object.create = function (o){
+		function F() { }
+		F.prototype = o;
+		return new F();
+	};
+}
+	
+In part of trying to look classical, JavaScript has a 'new' operator.
+
+- the new operator is required when calling a constructor function.
+- if new is omitted, the global object is clobbered by the constructor.
+- there is no compile-time or run-time warning.
+
+//Global
+
+var names = ['zero', 'one', 'two'
+	'three', 'four', 'five', 'six', 
+	'seven', 'eight', 'nine'];
+	
+var digit_name = function (n){
+	return names[n];
+};
+
+alert(digit_name(3)); //three
+
+#1 rule to good Javascript:
+Always avoid global variables!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Ways to do that:
+
+1. slowly - by defining the variable 'names' as a private variable in the
+digit_name function:
+
+var digit_name = function (n) {
+	var names = ['zero', 'one', 'two'
+		'three', 'four', 'five', 'six', 
+		'seven', 'eight', 'nine'];
+	
+	return names[n];
+};
+
+alert(digit_name(3)); //three
+
+the problem with this approach is, that every time this function is called, 
+we're going to have to reinitialize the names array. In theory, an optimized 
+compiler could detect that and optimize that out, but today, no one can do 
+that.
+
+var digit_name = function (n) {
+	var names = ['zero', 'one', 'two'
+		'three', 'four', 'five', 'six', 
+		'seven', 'eight', 'nine'];
+	
+	return function (n)
+	{
+		return names[n];
+	};
+}();
+
+//the outer function is executed immediately, creating the 'names' 
+//array and leaving access open to it for the closure as long as it lives.
+
+//Singleton - no class needed, can just code one.
+//the 'Module Pattern'
+var singleton = function () {
+	var privateVariable;
+	function privateFunction(x) 
+	{
+		alert(privateVariable);
+	}
+	
+	return 
+	{
+		firstMethod: function (a, b)
+		{
+			console.log(privateVariable);
+		},
+		secondMethod: function (c)
+		{
+			privateFunction();
+		}
+	};
+}();
+
+//this is a function that will be executed immediately that will
+//return an object literal that contains methods that will do useful
+//stuff, and those methods will have access to the properties in the
+//outer function.
+
+Modules can be powerful constructors.
+
+Power Constructors
+
+1. Make an object.
+- Object literal
+- new
+- Object.create
+- call another power constructor
+
+2. Define some variables and functions
+- this will be the private members.
+
+3. Augment the Object with privileged
+methods.
+
+4. Return the object.
+
+//////////////////////////////////////////////////////////////////////
+
+//Step One
+function myPowerConstructor(x) {
+	var that = otherMaker(x);
+	var secret = f (x); //step 2, declaring private member variable.
+	that.priv = function ()  //step 3, create privileged method
+	{
+		//... secret x that ....
+	};
+	return that;
+}
+
+that is an easy way to create objects that can hide their stuff and
+remain private.
+
+The reason this works is because we have Closure in this language.
+
+A function Object contains
+- A function (name, parameters, body)
+- A reference to the environment in which it was created (context,
+aka stuff that's in the outer function).
+
+This is good.
+
+Style Isn't Subjective.
+
+block
+{
+	.....
+}
+
+Might work well in other languages.
+
+block {
+	....
+}
+
+Works well in JavaScript
+
+return
+{
+	ok: false
+};
+
+SILENT ERROR
+
+return {
+	ok: true
+};
+
+Works well in JavaScript
+
+How????
+
+return; //semicolon insertion
+{
+	ok: false	
+};
+
+A return with no expression or value after it will
+return undefined in most contexts.
+
+You might think it needs to throw an error here,
+but maybe not. Maybe those curly braces could 
+mean 'start an object literal', or maybe 'start a block'.
+
+In this language we don't have block scope, and
+in this occasion the language prefers a block to
+a literal, so that's what we get.
+
+A Personal Journey
+beautiful code...
+
+JSLint
+
+JSLint defines a professional subset of JavaScript.
+
+It imposes a programming discipline that makes
+me much more confident in a dynamic, loosely-
+typed environment.
+
+http://www.JSLint.com/
+
+ECMAScript Fourth Edition
+- Corrections
+- Reality
+- Support for object hardening
+- Strict mode for reliability (for fixing crappy behavior)
+- Waiting on implementations
+
+
+The Good Parts
+
+- Your JavaScript application can reach a potential
+audience of billions.
+
+- If you avoid the bad parts, JavaScript works really
+well. There is some brilliance in it.
+
+- It is possible to write good programs with JavaScript.
+
+
+
+Q&A 
+
+Strict mode takes out the with statement, and modifies
+behavior.
+
+"The less we have to agree on to work together, the better"
+- Douglas Crockford.
+
+Why quotes on JSON property names?
+-DC wanted to align the language with Python
+-Javascript has a stupid reserved word policy. 
+There are certain words you can not use in the key
+position of an object literal. Many of those words
+are not even used in the language, they are just
+reserved unneccesarily and there is no reason for it.
