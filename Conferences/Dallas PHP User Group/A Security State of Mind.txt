@@ -1,0 +1,151 @@
+Dallas PHP User Group
+Chris Cornuitt
+A (PHP) Security State of mind
+Jan 8, 2013
+-----------------------------------------------
+
+First, the easy stuff.
+-filter input
+-escape output
+
+Filtering
+-one of the most difficult part of the app
+-more possibilities of bad data
+-better to whitelist than blacklist
+-PHP's nature doesn't help
+-type hinting can be useful
+-code defensively
+
+-don't expose more data than what you need to in case
+of exception
+
+-fail fast, fail hard
+
+Think about...
+-no universal filtering
+-be wary of do-it-alls
+-good design is by contract, be deliberate
+-watch for multiple contexts (ex. in output & SQL)
+
+Protect yourself
+-know the "holes" in what you use
+-don't trust it if you don't know it
+-filter with impunity, don't alter
+- === don't ==
+-all user data is tainted, especially superglobals
+
+for example... $_SERVER
+PHP_SELF .... current script filename
+HTTP_HOST ... Sent in the "host" header
+HTTP_USER_AGENT - The worst offender.
+
+Validation + Filter == <3
+
+on..
+-data type
+-whitelisted characters
+-formatting(phone #, email, etc)
+-range (character or number)
+-required data
+-complex logic checking
+
+When escaping...
+"Encoding" vs "Escaping"
+Internal functions
+-htmlspecialchars(encoding)
+-htmlentities(encoding)
+-filter_var
+Most popular prevention for XSS
+
+Framework Specific
+-Zend\Escaper
+-Symfony sfOutputEscaper
+-Frameworks with default escaping in views
+-Twig's autoescaping
+
+What to escape
+-Anything from the user
+-Anything from an external source
+-Database information
+-Session Information
+
+Contexts
+-General Output (text)
+-HTML attributes
+-JavaScript code
+-URL parameters
+-SQL Statements
+-JSON data
+-Header Information
+
+JavaScript
+-Don't trust it. Period.
+-Same-origin vs Access-Control-Allow-Origin
+-XSS can allow for JS injection
+-Global nature, overrides are easy.
+-Sandboxing in recent browsers
+-Content Security Policy
+
+http://websec.io/2012/10/02/Intro-to-Content-Security-Policy.html
+
+Hackers most likely don't want info, they want to perform a
+distributed denial of service.
+
+Javascript validation? Secondary only.
+
+-Be aware of remote scripts
+-Cross-Domain Resource Sharing vs Same-Origin
+-Specific Attacks like:
+--JSON hijacking
+--Clickjacking
+--DOM injection
+--Web Sockets
+
+HTML5
+-WebSQL Injection
+-OWASP HTML5 Security Cheat Sheet
+-Prevention with headers
+	- X-Frame-Options (Non-IE)
+	- X-XSS-Protection
+	- Strict-Transport-Security (Only HTTPS specific)
+	- Content-Security-Policy
+	- Origin
+-Recent abuse of Fullscreen API
+-Frame busting
+-Input Validation (like URLs or Ajax)
+-Check Origin
+-Iframe sandboxing
+-html5sec.org
+
+Server Security
+-strong system passwords
+-lock it down
+-favor ssl ("HTTPS Everywhere")
+-update, update, and UPDATE!
+
+https://github.com/enygma/shieldframework/blob/master/Shield/Session.php
+
+Other Concerns
+
+Shared Resources/sessions
+
+Network Security
+Block ports, lock it down.
+Firewall/Route to restrict access
+Consider internal vs. external access
+
+Secure Development
+-Never trust the user.
+-Incorporate security checking into the development process
+-Create a security policy all devs should follow
+-remember your attack surface.
+
+Tools
+
+To learn and test
+-WebScarab - Capturing proxy
+-Burp suite - Security Testing app
+-Skipfish - Googles scanner
+-Webgoat/DVWA
+
+

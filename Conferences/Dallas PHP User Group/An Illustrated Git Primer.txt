@@ -1,0 +1,72 @@
+An illustrated Git Primer
+----------------------------------------------------------------------------------------------
+Daniel Cousineau | dcousineau.com
+Dallas PHP User Group
+09-18-2012
+
+HISTORY -------------------------------------------------------------------------------
+-linus torvalds
+-bitkeeper no longer free to use
+-linux kernel requires: distributed performant
+-svn and cvs did not work
+
+...thus git
+
+GITTING STARTED -----------------------------------------------------------------
+http://windows.github.com
+
+
++STAGING?----------------------------------------------------------------------------
+-Working Directory: files checked out
+-Index: "staging"
+-Repository: Actual git repo
+
+DIRECTORIES-------------------------------------------------------------------------
+-git doesn't understand directories
+-empty directories don't exist.
+
+BRANCHNG----------------------------------------------------------------------------
+-most powerful
+-reason people use git
+-optomized for branching
+-branches are really pointers
+
+STASH------------------------------------------------------------------------------------
+-a scratch pad for changes
+
+GIT SVN----------------------------------------------------------------------------------
+-Anything that has been DCOMMIT'd is set in stone, do. not. touch.
+-git branches well, svn not so much
+-svn is terrible with merges
+-git will do it for you.
+
+ADVANCED USAGE----------------------------------------------------------------
+-git checkout -- .  			= reset local changes
+-git reset --mixed REF 	= replay last commit
+-git reset --hard HEAD^ 	= undo last commit, can use ^2 for 2 prior commit
+-git branch newbranchname
+ git reset --hard SHA		= commit immediately before branching
+-git rebase --interactive SHA = commit immediately preceeding the commit in question
+-github has a nice page of helps and tricks.
+
+GIT SERVERS------------------------------------------------------------------------
+-Gitorious
+-GitlabHQ
+-Gitolite
+-Gitosis
+
+-simplify ssh key management, process management
+-git server 			= ssh server with limited shell access to run git
+-prebuilt servers = ease of setup
+
+MISC---------------------------------------------------------------------------------------
+-http://nvie.com/posts/a-successful-git-branching-model
+-hash representing commits include timestamp, so it will change
+when rebasing.
+-git does not track differences
+-continuous integration: Jenkins
+-git can track permission changes
+
+
+-help.github.com
+-http://git-scm.com/book

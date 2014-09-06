@@ -1,0 +1,250 @@
+Dallas PHP: Unit Testing, Using PHPUnit to test your code.
+10/09/2012
+------------------------
+
+News:
+December, codeworks
+
+jtreminio.com
+
+You already test
+-write code then execute
+
+Hitting F5
+-abuse f5 to see changes
+
+Deleting temporary code
+-delete test code
+-have to write it again
+
+Why PHPUnit?
+-automating testing
+-many times faster than you.
+--3000 tests run in less than a minute.
+-uncovers bugs
+--previously unidentified pathways
+--"what happens if I do this?"
+-change in behavior
+--test was passing, now failing, red light?!
+-teamwork
+--Bob may not know your code.
+-projects require tests
+--open source projects require tests
+--can't contribute without tests
+
+Installing PHPUnit
+-Don't use PEAR
+--Old version
+--No Autocomplete
+--Keeping multiple devs in sync
+
+Use Composer!
+-Easy
+-Fast!
+
+Your first useless test.
+
+-Tests must be called {Class}Test.php
+-Extends PHPUnit_Framework_TestCase
+-test must have the word test in front of the method
+
+Breaking down a method for testing.
+-isolate as much code as possible
+-test the smallest amount of code that makes sense
+
+Dependency Injections
+-Don't use `new`
+-Pass in dependencies in method parameters
+-Learn yourself some DI
+
+Introducing Mocks and Stubs
+Mocks
+-Mimic the original method closely
+-Execute actual code
+-Give you some control
+-You can have mocked objects and mocked methods
+-mocked object = anything inside PHPUnit that you control
+Stubs
+-Methods are completely overwritten
+-allow complete control
+-by default returns null
+
+Both mocks and stubs are used with outside dependencies.
+
+How to mock an object?
+1.Create separate files
+--Lots of work
+--Lots of files to keep track of
+--mimic directory structure
+
+2.Use getMock()
+-- too many optional parameters!
+
+As of PHPUnit 3.5, getMockBuilder was introduced
+--uses chained methods
+--much easier to work with
+
+Mockery[1] 
+--Once you master getMockBuilder() it is no longer necessary.
+
+Create a basic mock
+$this->getMockBuilder('className')
+	->getMock(); //mocked method created at runtime
+
+->getMockBuilder()->setMethods()
+setMethods has 4 possible outcomes
+1.Don't call setMethods()
+-All methods in mocked object are stubs
+-Return null
+-Methods are easily overridable
+
+getMockBuilder implements an is_a() test
+
+2.Pass array()
+
+3.Pass null
+-all methods in mocked object are mocks
+-run actual code in method
+-not overridable
+
+4.Passing array with method names
+-methods identified are stubs
+--return null
+--easily overridable
+-methods not identified are mocks
+-actual code is ran
+-unable to override
+
+Also:
+
+getMockBuilder()->disableOriginalConstructor(); // does what it says.
+
+getMockBuilder()->setConstructorArgs(); //does what it says.
+
+Using Stub Methods
+
+->expects()
+
+- $this->once(); //expects method to be run once
+- $this->any(); //expects method to be run 0+ times
+- $this->never(); //never called
+- $this->exactly(n); //exactly n times
+- $this->onConsecutiveCalls(); //happens on consecutive calls
+
+Overriding the Stub method means specifying what it returns.
+
+- Doesn't run any code
+- Expects call count
+- Can return anything
+
+A mock is created so you don't need to use dependencies.
+
+A stubbed method can return another mock object.
+
+Assertions
+- define what you expect to happen
+- assertions check statements are true
+- 36 assertions as of PHPUnit 3.6
+
+
+Statics are Evil ... or are they?
+-Statics are convenient
+-Statics are quick to use
+
+-Statics are now easy to mock*
+--only if both caller and callee are in same class
+
+-statics create dependencies within your code
+-static properties keep values
+--PHPUnit has a "backupStaticAttributes" flag
+
+Mocking Static method
+
+class foo(){
+
+	public static function doSomething(){
+		return static::helper();
+	}
+
+	public static function helper(){
+		return 'foo';
+	}
+}
+
+Don't do it!
+
+-Can't mock static calls to outside classes!
+
+When to use statics?
+-same class
+-non complicated operation
+-never
+
+Annotations
+-DockBlox
+-add detail
+-change behavior
+
+@covers - tells phpunit what's being tested, great for coverage reports.
+@group 	- great for separating tests into named group, won't run full suite.
+@test	- may as well! Lets you stop using 'test{methodName}' for naming
+@dataProvider	- Run single test with different input.
+
+setUp() && tearDown()
+setUp runs before, sets class variable
+tearDown runs after, useful for database interactions
+
+
+Integration tests deal with more of the system than Unit tests, etc:
+-databases, 
+-ping for connection tests
+
+PHPUnit is a class, and therefore extendable.
+
+XMLConfigFile
+-backup globals and backup static attributes: you can save a value of a
+global or a static variable.
+-colors: set colors
+-stopOnFailure
+-stopOnError
+-stopOnIncomplete
+-syntaxCheck
+-processIsolation
+-bootstrap: Composer, or autoload.
+
+<directory>tests</directory> //sets test suite directory
+
+Failure: Test assertion fails, did not get expected results
+Errors: Something syntactically went wrong
+
+How to mock native PHP functions?
+-DONT USE RUNKIT
+-wrap functions in class methods
+--allows for easy mocking and stubbing
+-why mock native functions?
+--you shouldn't
+
+Classes should remain Ignorant of tests
+
+--Should not know they are being tested
+--Never change original files with test-only code
+--Creating wrappers for mocks is OK
+
+Few Assertions!
+--As few assertions as possible per method
+--Max one master assertion
+---run actual method, get result, 
+	i expect ___ to be an ___ and it contains a ___
+
+Further reading:
+-http://jtreminio.com
+-multi-part
+-much greater detail
+
+Read CHartjes' book on testable code writing.
+
+Check out Juan Treminio's tests 
+http://github.com/jtreminio
+
+
+
