@@ -154,3 +154,58 @@ $ session.save_path - OWNER
 SU PHP
 
 - set save path per user.
+
+default /tmp
+
+use /tmp/[username]
+use /tmp/[generated hash]
+
+http://websec.io/2012/09/10/Encrypted-Sessions-with-PHP.html
+
+$ session.use_trans_sid = OFF
+
+turn off
+
+$ session.entropy_file - ASSIGNED
+
+- takes whats in file and uses it as extra entropy for session hashes.
+
+$ session.use_strict_mode = ON
+
+
+
+Other
+------------
+
+$ disable_functions - SET
+
+-can't disable Eval
+
+-fopen
+-fsockopen
+-the more functions you can define, the less an attacker can use toward your script
+
+$ allow_url_fopen = OFF
+- off if you dont need it
+- making URL requests out from your app
+
+$ allow_url_include = OFF
+- this is includes from URLS, want to lock this down.
+
+$ register_globals
+$ magic_quotes_gpc
+$ safe_mode
+
+OFF
+
+Unfortunately.. setting these things requires permission. Several can be set from the code level, but most require permissions.
+
+Apache will require a restart. CLI is at runtime.
+
+per-user requires other software
+
+some, but not all can be overwritten in the code
+
+KNOW YOUR SOFTWARE! Do a source code audit.
+
+
