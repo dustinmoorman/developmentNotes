@@ -219,4 +219,4 @@ tool that runs through a php.ini file and checks for vulnerabilities
 - notifies of deprecation
 
 http://websec.io/
-
+http://php.net/manual/en/ini.list.php
