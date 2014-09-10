@@ -125,5 +125,32 @@ $ memory_limit - SET, <128M
 Sessions 
 ------------
 
+$ session.domain - IS SET
 
+- having this set is better than relying on the browser or client to make sure this is set correctly
 
+$ session.cookie_httponly - ON
+
+- Lets the cookie know that only HTTP can touch the cookies, not JS itself. (when you're using the setcookie() function as well)
+
+$ session.cookie_secure = ON
+
+- only support cookies on HTTPS
+
+$ session.hash_function - IS SET, IS STRONG
+
+- avoid md2, md4, md5, sha1, gost, snefru
+- controlls hash algo used for session id
+- sha256 or higher
+- most apps, default is alright
+- heavier algos get slower to generate
+
+$ session.save_path - OWNER
+
+- if the webserver user is r/w session files it has access to those files.
+- if the attacker is using your script, it's operating under the www_data user and has the same access.
+	- then loop through and read through session vars, looking for k/v's like ADMIN = 1
+
+SU PHP
+
+- set save path per user.
