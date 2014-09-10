@@ -115,3 +115,15 @@ $ open_basedir - SET
 -be aware if you're writing tmp files.
 - can be set at code level (ie, multiple users, multiple paths)
 
+$ memory_limit - SET, <128M
+
+- total memory limit for the process
+- if you have some massive process...... consider a queue, ask yourself if this is the best way to use processing power?
+
+
+
+Sessions 
+------------
+
+
+
