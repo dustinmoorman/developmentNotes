@@ -208,4 +208,15 @@ some, but not all can be overwritten in the code
 
 KNOW YOUR SOFTWARE! Do a source code audit.
 
+Usually as easy as grepping for a few functions.
+- ini_set
+- eval
+
+http://github.com/psecio/iniscan
+
+tool that runs through a php.ini file and checks for vulnerabilities
+- notifies of warnings 
+- notifies of deprecation
+
+http://websec.io/
 
