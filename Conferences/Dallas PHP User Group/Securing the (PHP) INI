@@ -13,5 +13,56 @@ http://dallasgivecamp.org/
 
 ----------------------------------------------
 
+Covering behind the scenes stuff that tutorials don't tell you about.
+
+php.ini - the config file
+
+- there can be other config files though.
+
+
+stuff in there
+-base php settings
+-apc cache control
+-cgi
+-cli setup
+- exif
+-date timeaa
+-file upload
+-phar
+-pdo
+-soap connections
+-sessions
+-xdebug
+-http requests
+-memcache
+-sql dbs
+
+php.ini location can be configured.
+
+read on startup
+
+multiple can exist
+
+only some can be overwritten
+
+- too many people ignore it.
+
+If you don't have an INI file in the fs, PHP will load its 'default' internal one.
+
+Be careful not to change things that are harmful to your system.
+
+Don't set memory to 6G unless you need to! If anon found out, they could spawn multiple apache threads and could take that server down pretty easily.
+
+Main points
+-base php settings
+-err handling
+-file uploads
+- http req
+-sessions
+
+
+Base PHP
+------------
+display_errors = off
 
 
