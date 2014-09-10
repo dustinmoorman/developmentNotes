@@ -63,24 +63,55 @@ Main points
 
 Base PHP
 ------------
-display_errors = off
+$ display_errors = off
 
 Can spew out all kinds of info, turn this off.
 
 * can even leave this off in devel and just tail the logs
 
-log_errors = ON
+$ log_errors = ON
 
 Always log errors that occur
 
-error_reporting = E_ALL
+$ error_reporting = E_ALL
 
 Throw every single type of error.
 
 - Development settings.
 - Production - use NOTICE and below.
 
-display_startup_errors = OFF
+$ display_startup_errors = OFF
 
 doesn't really come up anymore, usually its the execution of the code that causes problems. stuff that comes up before the script processes even.
+
+$ expose_php = OFF
+
+in return headers, php usually shows your version of PHP.
+
+if this is not turned off, an attacker can go and view the vulnerability list for the version of PHP you're using, and exploit your web server.
+
+$ register_long_arrays = OFF
+
+extra functionality that nobody is using... at least in newer code.
+
+$ max_input_vars - SET 
+
+- any of the input that comes from a user.
+- by default not set
+- by not setting this, you leave your application open to accepting requests with 4000, 5000, 5000000000000 GET variables.
+- also controls cookie vars
+
+$ post_max_size - SET, <8M
+
+-default payload for post data.
+-set it low unless you're uploading files
+-you'd be preventing issues posting large binary data
+-also settable in the web server, most of the time
+
+$ open_basedir - SET
+
+-tells PHP you can only open these directories
+-highly recommended.
+-be aware if you're writing tmp files.
+- can be set at code level (ie, multiple users, multiple paths)
 
