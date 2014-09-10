@@ -65,4 +65,22 @@ Base PHP
 ------------
 display_errors = off
 
+Can spew out all kinds of info, turn this off.
+
+* can even leave this off in devel and just tail the logs
+
+log_errors = ON
+
+Always log errors that occur
+
+error_reporting = E_ALL
+
+Throw every single type of error.
+
+- Development settings.
+- Production - use NOTICE and below.
+
+display_startup_errors = OFF
+
+doesn't really come up anymore, usually its the execution of the code that causes problems. stuff that comes up before the script processes even.
 
