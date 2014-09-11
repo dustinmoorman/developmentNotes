@@ -136,8 +136,6 @@ Amazon provides
 Using security groups, the web server could talk only to the app server, and the app server could talk explicitly to the RDS instance and Elasticache, but nodes like Elasticache would only talk to the app server. 
 	- ie, nodes in the vpc should be locked down via security groups to talk to only the nodes you expect the server to talk to.
 
-
-
 ELB - Elastic Load Balancer, also a good added security measure.
 
 Best way to get in to the VPC is via VPN.
