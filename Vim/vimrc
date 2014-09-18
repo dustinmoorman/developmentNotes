@@ -1,4 +1,4 @@
-colorscheme devbox-dark-256
+colorscheme greenvision
 set nu
 set expandtab
 set tabstop=4
