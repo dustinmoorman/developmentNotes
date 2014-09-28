@@ -68,5 +68,5 @@ hi Underlined       guifg=#00b400 guibg=#000000 gui=underline ctermfg=002 ctermb
 hi VertSplit        guifg=#000600 guibg=#001f00 gui=none ctermfg=022 ctermbg=none cterm=none
 hi Visual       guibg=#001500 gui=reverse ctermbg=none cterm=reverse
 hi VisualNOS        guibg=#002700 gui=reverse ctermbg=none cterm=reverse
-hi WarningMsg       guifg=#000000 guibg=#00ff00 gui=none ctermfg=010 ctermbg=nonthe cterm=none
+hi WarningMsg       guifg=#000000 guibg=#00ff00 gui=none ctermfg=010 ctermbg=none cterm=none
 hi WildMenu     guifg=#00cb00 guibg=#000000 gui=reverse ctermfg=000 ctermbg=none cterm=reverse
