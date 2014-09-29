@@ -1,6 +1,6 @@
 mkdir ~/.vim
 mkdir ~/.vim/colors
 cd ~/.vim/colors
-wget http://tau.pe/K1x --no-check-certificate
+wget http://tau.pe/gui --no-check-certificate
 
 (make sure .vimrc is set to use t_Co=256 && colorscheme greenvision)
