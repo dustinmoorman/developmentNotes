@@ -1,9 +1,9 @@
 " Vim color file
 " Name: greenvision.vim
-" Maintainer: Paul B. Mahol <onemda@No-NoSpaMgmail.com>
-" Last Change: 6.6.2008
+" Maintainer: Dustin Moorman <dustin.moorman@gmail.com>
+" Last Change: 9.29.2014
 " License: Vim License
-" Revision: 29
+" Revision: 4
 
 if !has("gui_running") && &t_Co != 256 && &t_Co != 88
 	echomsg ""
