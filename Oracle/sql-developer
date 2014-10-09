@@ -7,3 +7,10 @@ Autotrace to get important information about a query
 	- etc
 
 Explain plan for Cost
+
+Clear buffered cache and shared pool:
+
+ALTER SYSTEM FLUSH SHARED_POOL;
+ALTER SYSTEM FLUSH BUFFER_CACHE;
+
+
