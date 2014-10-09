@@ -1,0 +1,9 @@
+Autotrace to get important information about a query
+	- consistent gets
+	- physical reads
+	- bytes sent
+	- bytes received
+	- CPU usage
+	- etc
+
+Explain plan for Cost
