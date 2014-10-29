@@ -1,0 +1,15 @@
+protected static function getMethod($methodName)
+{   
+    $className = new ReflectionClass('ClassName');
+    $method = $className->getMethod($methodName);
+    $method->setAccessible(true);
+	return $method;
+}
+
+
+//somewhere:
+
+$method = $this->getMethod('previouslyProtectedMethodOfExcellence');
+$method->invokeArgs($InstanceOfClassName, ['param1', 'param2']);
+
+
