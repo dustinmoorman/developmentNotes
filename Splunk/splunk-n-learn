@@ -33,4 +33,6 @@ group events together ^
 | transaction id duration eventcount
     - how many events are in a given grouping
 
+before piping to the transaction method, you need to filter out as much as possible to make it quicker and alleiviate the slowness
 
+| stats count
