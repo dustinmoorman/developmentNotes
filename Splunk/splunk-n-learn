@@ -36,3 +36,17 @@ group events together ^
 before piping to the transaction method, you need to filter out as much as possible to make it quicker and alleiviate the slowness
 
 | stats count
+
+- allows you to filer by field
+
+| stats count by process_id
+
+Stats for the count on how many times this process_id was logged ^
+
+adding filter to count
+
+| stats count(process_id) by trans_id
+
+- filter out how many times a process occurs in a set of transactions
+
+stdev(elapse) can get you a column with the standard deviation of the above elapsed definition (eval)
