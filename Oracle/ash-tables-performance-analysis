@@ -192,4 +192,23 @@ ASH data gotcha's
 - Time period of data available in v$active_session_history is variable
 
 
+ASH: Bad SQL
 
+select 
+    e.event,
+    e.total_waits - nvl(b.total_waits, 0) total_waits,
+    e.time_waited - nvl(b.time_waited, 0) time_waited
+from
+    v$active_session_history b,
+    v$active_session_history e,
+    stats$snapshot sn
+where snap_time > sysdate-&1
+    and e.event not like '%timer'
+    and e.event not like '%message%'
+    and e.event not like '%slave wait%'
+    and e.snap_id = sn.snap_id
+    and b.snap_id = e.snap_id-1
+    and b.event = e.event
+    and e.total_timeouts > 100
+    and (e.total_waits - b.total_waits > 100
+        or e.time_waited - b.time_waited > 100);
