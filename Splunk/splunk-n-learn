@@ -12,3 +12,8 @@ check_clou* | search 193324
 - by default not sequential
 
 pipe to sort -_time to get ordered results
+
+_time is special, the minus (-) is sort by descending order, while sans (-) is ascending
+
+Splunk will do realtime event tracking
+    - it will be heavy request-wise
