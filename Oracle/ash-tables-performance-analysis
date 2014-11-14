@@ -9,4 +9,23 @@ Oracle Statistics
         - need prior knowledge that problem exists
             - (reactive)
 
+Solution: Active Session History
+    - Sample session activity in the system including:
+        - session id
+        - wait event
+        - sql id
+        - object
+    - always on for first fault analysis (passive)
 
+Active session history
+    - Sampled, detailed, non-intrusive activity data
+    - part of 10g
+    - on by default
+    - licensed as part of the diagnostic pack
+    
+    - Samples 'Active' sessions every second
+        - like doing "select * from v$session_wait" w/o sql
+    - Writes into ASH buffer in SGA memory
+        - 2MB per CPU, <= 5% shared_pool, 2% sga_target
+    - 'Active' == Non-idle sessions
+        - waiting on non-idle event or on CPU
