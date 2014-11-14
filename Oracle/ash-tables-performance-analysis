@@ -212,3 +212,13 @@ where snap_time > sysdate-&1
     and e.total_timeouts > 100
     and (e.total_waits - b.total_waits > 100
         or e.time_waited - b.time_waited > 100);
+
+select sum(a.time_waited) total_time
+from v$active_session_history a,
+    v$event_name b
+where a.event# = b.event#
+    and sample_time > '14-NOV-14 12:00:00 AM'
+    and sample_time < '14-NOV-14 05:00:00 PM'
+    and b.wait_class = 'User I/O';
+
+
