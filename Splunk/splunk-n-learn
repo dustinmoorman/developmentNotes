@@ -81,3 +81,11 @@ sparkline - time per field and plots out how many events have occurred in a time
 splunk will allow 10 concurrent searches at a time
     - per logged in user
     - then it will start queueing
+
+
+find alerts
+
+- searches and reports
+ (in your manager)
+
+applications are like dashboards but they can take input
