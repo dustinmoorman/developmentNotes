@@ -221,4 +221,35 @@ where a.event# = b.event#
     and sample_time < '14-NOV-14 05:00:00 PM'
     and b.wait_class = 'User I/O';
 
+ASH vs AWR/Statpack
+----------------------- ASH     AWR
+instance wide data      yes     yes
+time based data         yes     yes
+counts/occurance data   no      yes
+analyze any time period yes     no
+detailed session data   yes     no
+individual wait data    yes     no
+sampled data            yes     no
+time based analysis     yes     no
+
+
+ASH vs SQLtrace/tkprof
+---------------------------     ASH     tkprof
+Parse/Exec/Fetch breakdown      no      yes
+Time based data                 yes     yes
+counts/occurance data           no      yes
+detailed session level data     yes     yes
+individual wait event data      yes     yes
+complete trace of operations    no      yes
+always on                       yes     no
+bind variables available        no      yes
+
+Conclusion
+ - ash data is always available
+ - allows instance wide performance analysis
+ - allows detailed session level performance
+ - but it is sampled data, so use statistical analysis techniques
+
+
+
 
