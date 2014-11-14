@@ -29,3 +29,21 @@ Active session history
         - 2MB per CPU, <= 5% shared_pool, 2% sga_target
     - 'Active' == Non-idle sessions
         - waiting on non-idle event or on CPU
+    - Data volume based on activity
+        - 10k sessions => 200 active sessions
+        - oracle design goal: one hour activity in memory
+
+
+
+-- size of the ash buffer
+select * from v$sgastat where name like 'ASH buffers';
+
+POOL        NAME        BYTES
+----------- ----------- ------------
+shared pool ASH buffers     65011712
+
+
+-- sample time window
+select min(sample_time), max(sample_time) from v$active_session_history;
+
+
