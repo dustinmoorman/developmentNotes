@@ -50,3 +50,23 @@ adding filter to count
 - filter out how many times a process occurs in a set of transactions
 
 stdev(elapse) can get you a column with the standard deviation of the above elapsed definition (eval)
+
+
+| chart avg(elapsed) by process_id
+
+splunk cant graph 3 dimensionally, only 2 axes
+
+break out other: 
+useother=f limit=0
+
+you always want time to be the x axis
+
+timechart can be used in lieu of chart to build charts with time as an axis
+
+
+| timechart count by host
+
+| timechart span=5m count by host
+
+you can save searches, and by doing so schedule those search results
+
