@@ -24,4 +24,13 @@ rex (regular expression eXtraction)
 
 also _time elapsed _raw
 
+eval elapsed = (elapsed/60). " minutes"
+
+| transaction id
+
+group events together ^ 
+
+| transaction id duration eventcount
+    - how many events are in a given grouping
+
 
