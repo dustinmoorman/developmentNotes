@@ -17,3 +17,11 @@ _time is special, the minus (-) is sort by descending order, while sans (-) is a
 
 Splunk will do realtime event tracking
     - it will be heavy request-wise
+
+rex (regular expression eXtraction)
+
+| rex "Time elapsed: (?<elapsed>[0-9.]*)" | table _time elapsed
+
+also _time elapsed _raw
+
+
