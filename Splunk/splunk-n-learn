@@ -70,3 +70,14 @@ timechart can be used in lieu of chart to build charts with time as an axis
 
 you can save searches, and by doing so schedule those search results
 
+you can save either a graph based on relative time, or
+you can save a specified resultset
+
+sparkline - time per field and plots out how many events have occurred in a time frame
+ - useful for noticing trends
+
+| stats sparkline(count)
+
+splunk will allow 10 concurrent searches at a time
+    - per logged in user
+    - then it will start queueing
