@@ -112,4 +112,49 @@ Accessing ASH data *********************
     - ASH report
     - EM diagnostic pack (unavail)
 
+Dumping ASH to file
+
+> oradebug setmypid
+> oradebug dump ashdump 10
+> alter session set events 'immediate trace name ashdump level 10';
+
+10 = minutes of history you want to dump,
+generated file can be loaded into db using supplied control file
+
+
+rdmbs/demo/ashldr.ctl
+
+
+
+v$active_session_history
+
+- gives most recent data first
+- control+C or 'set pause on'
+- Simpleash.sql
+
+Searching through the ASHes
+
+- "group by"s and "count(*)"s
+    - proxy for non-idle elapsed time
+    - proportions of actual time spent
+- can analyze any time slice
+- more samples = more accurate results
+
+
+
+
+TOP SQL --- Highly valuable
+
+select sql_id, count(*), round(count(*)/sum(count(*)) over (), 2) pctload 
+from v$active_session_history 
+where sample_time > sysdate - 1/24/60
+    and  session_type <> 'BACKGROUND'
+group by sql_id
+order by count(*) desc;
+
+
+^ ^ ^ ^ most active sql in the past minute
+
+
+
 
