@@ -1,0 +1,14 @@
+- splunk adds an "AND" in between all string tokens being searched for.
+
+- no default expression matching
+    - you'll need a * to match
+
+- pipe-able data to function capabilities
+
+
+check_clou* | search 193324
+
+
+- by default not sequential
+
+pipe to sort -_time to get ordered results
