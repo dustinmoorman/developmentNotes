@@ -1,0 +1,12 @@
+Oracle Statistics
+    - instance level statistics (awr, statspack)
+        - too little detail => stop short of complete diagnosis
+        - can be collected automatically
+            - (passive)
+    - trace level statistics (sql_trace)
+        - too much detail => intrusive, hard to see big picture
+        - must be enabled manually
+        - need prior knowledge that problem exists
+            - (reactive)
+
+
