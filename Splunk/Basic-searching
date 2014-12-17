@@ -12,3 +12,10 @@ search for string (value) can match for anything applicable
     - ../pinapple/503.php
 
 so to restrict , use key/value pairs.
+
+splunk will try and match k's and v's and provide this list for you via search assistant.
+
+To search for multiple kv's, use booleans:
+    - OR - AND - NOT
+
+if no boolean is used, AND is implied.
