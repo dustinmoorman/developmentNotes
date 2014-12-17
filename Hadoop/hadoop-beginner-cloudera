@@ -1,0 +1,29 @@
+Overview
+    - characteristics of large-scale computation
+    - pitfalls of distributed systems
+    - designing for scalability
+
+By the numbers...
+    - Max data in memory: 32GB
+    - Max data per comptuer: 12TB
+    - Data processed by Google every month: 400PB ... in 2007
+    - Average Job size: 180GB
+
+    - time that would take to read sequentially from a disk: 45m
+
+What does it mean?
+    - we can process data very quickly but we can read/write it very slowly
+    - solution: parallel reads.
+
+ 1 HDD = 75 Mb/sec
+ 1000 HDDs = 75 GB/sec
+
+    - thumbs up
+
+Sharing is slow
+    - grid computing, not a new thing.
+        - MPI, PVM, Condor ...
+    - grid focus: distribute the workload
+        - NetApp filer or other SAN drives many compute nodes
+    - Modern focus: distribute the _data_
+        - Reading 100 GB off a single filer would leave nodes starved - just store data local in lieu of SAN.
