@@ -1,0 +1,14 @@
+splunk search assistant can fuzzy match what you're looking for
+
+
+searches
+    search string input
+    time range selector
+
+search for string (value) can match for anything applicable
+503 value can return possibly
+    - status 503,
+    - user 503,
+    - ../pinapple/503.php
+
+so to restrict , use key/value pairs.
