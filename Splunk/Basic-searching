@@ -19,3 +19,5 @@ To search for multiple kv's, use booleans:
     - OR - AND - NOT
 
 if no boolean is used, AND is implied.
+
+comparison operators can also be used.
