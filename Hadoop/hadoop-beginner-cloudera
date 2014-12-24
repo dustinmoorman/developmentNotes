@@ -52,3 +52,10 @@ Reliability Demands
         - Adding increased load to a system should not cause outright failure, but a graceful decline of performance
         - Increasing resources should support a proportional increase in load capacity
 
+A Radical Way Out
+    - Nodes talk to each other as little as possible, maybe never.
+        - "Shared Nothing" architecture
+    - Programmer should not explicitly be allowed to communicate between nodes
+    - Data is spread throughout machines in advance, computation happens where it is stored
+
+
