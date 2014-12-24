@@ -48,4 +48,7 @@ Reliability Demands
         - Nodes that fail and restart must be able to rejoin the group activity without a full group restart
     - Consistency
         - Concurrent operations or partial internal failures should not cause externally visible nondeterminism
+    - Scalability
+        - Adding increased load to a system should not cause outright failure, but a graceful decline of performance
+        - Increasing resources should support a proportional increase in load capacity
 
