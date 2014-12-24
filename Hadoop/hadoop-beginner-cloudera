@@ -27,3 +27,25 @@ Sharing is slow
         - NetApp filer or other SAN drives many compute nodes
     - Modern focus: distribute the _data_
         - Reading 100 GB off a single filer would leave nodes starved - just store data local in lieu of SAN.
+
+Sharing is tricky
+    - Exchanging data requires synchronization
+        - deadlock becomes a problem
+    - Finite bandwidth is available
+        - Distributed systems can "drown themselves"
+        - Failovers can cause cascading faults
+    - Temporal dependencies are complicated
+        - Difficult to reason about partial restarts
+
+"Failure is the defining difference between distributed and local programming"
+
+Reliability Demands
+    - Support partial failure
+        - Total system must support graceful decline in application performance rather than a full halt
+    - Data Recoverability
+        - If components fail, their workload must be picked up by still-functioning units
+    - Individual Recoverability
+        - Nodes that fail and restart must be able to rejoin the group activity without a full group restart
+    - Consistency
+        - Concurrent operations or partial internal failures should not cause externally visible nondeterminism
+
