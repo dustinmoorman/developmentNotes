@@ -1,0 +1,11 @@
+let g:solarized_termcolors=256
+set background=dark
+set t_Co=256
+colorscheme solarized
+set nu
+set expandtab
+set tabstop=4
+
+syntax on
+filetype plugin on
+
