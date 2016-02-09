@@ -1,0 +1,188 @@
+Hi Donald (and Martin),
+
+Thanks for pinging me; it's nice to know Typesafe is keeping tabs on this, and I
+appreciate the tone. This is a Yegge-long response, but given that you and
+Martin are the two people best-situated to do anything about this, I'd rather
+err on the side of giving you too much to think about. I realize I'm being very
+critical of something in which you've invested a great deal (both financially
+and professionally) and I want to be explicit about my intentions: I think the
+world could benefit from a better Scala, and I'd like to see that work out even
+if it doesn't change what we're doing here.
+
+Right now at Yammer we're moving our basic infrastructure stack over to Java,
+and keeping Scala support around in the form of faÃ§ades and legacy libraries.
+It's not a hurried process and we're just starting out on it, but it's been a
+long time coming. The essence of it is that the friction and complexity that
+comes with using Scala instead of Java isn't offset by enough productivity
+benefit or reduction of maintenance burden for it to make sense as our default
+language. We'll still have Scala in production, probably in perpetuity, but
+going forward our main development target will be Java.
+
+So.
+
+Scala, as a language, has some profoundly interesting ideas in it. That's one of
+the things which attracted me to it in the first place. But it's also a very
+complex language. The number of concepts I had to explain to new members of our
+team for even the simplest usage of a collection was surprising: implicit
+parameters, builder typeclasses, "operator overloading", return type inference,
+etc. etc. Then the particulars: what's a Traversable vs. a TraversableOnce?
+GenTraversable? Iterable? IterableLike? Should they be choosing the most general
+type for parameters, and if so what was that? What was a =:= and where could
+they get one from?
+
+A lot of this has been waved away as something only library authors really need
+to know about, but when an library's API bubbles all of this up to the top (and
+since most of these features resolve specifics at the call site, they do),
+engineers need to have an accurate mental model of how these libraries work or
+they shift into cargo-culting snippets of code as magic talismans of
+functionality.
+
+In addition to the concepts and specific implementations that Scala introduces,
+there is also a cultural layer of what it means to write idiomatic Scala. The
+most vocal â€” and thus most visible â€” members of the Scala community at large
+seem to tend either towards the comic buffoonery of attempting to compile their
+Haskell using scalac or towards vigorously and enthusiastically reinventing the
+wheel as a way of exercising concepts they'd been struggling with or curious
+about. As my team navigated these waters, they would occasionally ask things
+like: "So this one guy says the only way to do this is with a bijective map on a
+semi-algebra, whatever the hell that is, and this other guy says to use a
+library which doesn't have docs and didn't exist until last week and that he
+wrote. The first guy and the second guy seem to hate each other. What's the
+Scala way of sending an HTTP request to a server?" We had some patchwork code
+where idioms which had been heartily recommended and then hotly criticized on
+Stack Overflow threads were tried out, but at some point a best practice
+emerged: ignore the community entirely.
+
+Not being able to rely on a strong community presence meant we had to fend for
+ourselves in figuring out what "good" Scala was. In hindsight, I definitely
+underestimated both the difficulty and importance of learning (and teaching)
+Scala. Because it's effectively impossible to hire people with prior Scala
+experience (of the hundreds of people we've interviewed perhaps three had Scala
+experience, of those three we hired one), this matters much more than it might
+otherwise. If we take even the strongest of JVM engineers and rush them into
+writing Scala, we increase our maintenance burden with their funky code; if we
+invest heavily in teaching new hires Scala they won't be writing production code
+for a while, increasing our time-to-market. Contrast this with the default for
+the JVM ecosystem: if new hires write Java, they're productive as soon as we can
+get them a keyboard.
+
+Even once our team members got up to speed on Scala, the development story was
+never as easy as I'd thought it would be. Because one never writes pure Scala in
+an industrial setting, we found ourselves having to superimpose four different
+levels of mental model â€” the Scala we wrote, the Java we didn't write, the
+bytecode it all compiles into, and the actual problem we were writing code to
+solve. It wasn't until I wrote some pure Java that I realized how much extra
+burden that had been, and I've heard similar comments from other team members.
+Even with services that only used Scala libraries, the choice was never between
+Java and Scala; it was between Java and Scala-and-Java.
+
+Adding to the unease in development were issues with the build toolchain. We
+started with SBT 0.7, which offered a pleasant interface to some rather dubious
+internals, but by the time SBT 0.10 came out, we'd had endless issues trying to
+debug or extend SBT. We looked at using 0.10, but we found it to have the exact
+same problems managing dependencies (read: Ivy), two new, different flavors of
+inpenetrable, undocumented, symbol-heavy API, and an implementation which can
+only be described as an idioglossia. The fact that SBT plugin authors had to
+discover what "best practices" are in order to avoid making two plugins
+accidentally incompatible should have been a red flag for any tool which
+includes typesafety as a selling point. (The fact that I tried to write a plugin
+to replace SBT's usage of Ivy with Maven's Aether library should have been a red
+flag for me.) We ended up moving to Maven, which isn't pretty but works. We
+jettisoned all of the SBT plugins I wrote to duplicate Maven functionality, our
+IDE integration worked properly, and the rest of our release toolchain (CI,
+deployment, etc.) no longer needed custom shims to work. But using Maven really
+highlighted the second-class status assigned to it in the Scala ecosystem. In
+addition to the "enterprisey" cat-calls and disbelief from the community, we
+found out that pointing out scalac's incremental compilation bugs had gotten
+that feature removed outright. Even the deprecation warning for -make: suggests
+using SBT or an IDE. This emphasis on SBT being the one true way has meant the
+marginalization of Maven and Ant -- the two main build tools in the Java
+ecosystem. Cross-building is also crazy-making. I don't have any good solutions
+for backwards compatibility, but each major Scala release being incompatible
+with the previous one biases Scala developers towards newer libraries and
+promotes wheel-reinventing in the general ecosystem. Most Scala releases contain
+improvements in day-to-day programming (including compilation speed), but an
+application developer has to wait until all their dependencies are upgraded
+before they themselves can upgrade. If they can't wait, they have to take on the
+maintenance burden of that library indefinitely. In order to reduce their
+maintenance overhead, they naturally look for another, roughly equivalent
+library with a more responsive author. Even if the older library is better-
+tested, better-documented, and better-featured it will still lose out over time
+as developers jump ship for something that works with Scala 2.next sooner. (It's
+also worth noting that most companies using Scala at scale or in mission-
+critical capacities will not immediately upgrade; the library authors they
+employ will likely be similarly conservative, and the benefit their experience
+brings to their code will benefit the community less and less over time. As far
+as I've found, we're the only big startup in SF using 2.9.) Once in production,
+Scala's runtime characteristics were the least subtle problem. At one point,
+half the team was working on a distributed database, and given the write fanout
+for our large networks some parts of the code could be called 10-20M times per
+write. Via profiling and examining the bytecode we managed to get a 100x
+improvement by adopting some simple rules:
+
+1. Don't ever use a for-loop. Creating a new object for the loop closure,
+passing it to the iterable, etc., ends up being a forest of invokevirtual calls,
+even for the simple case of iterating over an array. Writing the same code as a
+while-loop or tail recursive call brings it back to simple field access and
+gotos. While I'm sure Scala will be have better optimizations in the future, we
+had to mutilate a fair portion of our code in order to actually ship it. (In
+another service, we got away with just using the ScalaCL compiler plugin and
+copying things to and from arrays instead of using immutable collections.)
+
+2. Don't ever use scala.collection.mutable. Replacing a
+scala.collection.mutable.HashMap with a java.util.HashMap in a wrapper produced
+an order-of-magnitude performance benefit for one of these loops. Again, this
+led to some heinous code as any of its methods which took a Builder or
+CanBuildFrom would immediately land us with a mutable.HashMap. (We ended up
+using explicit external iterators and a while-loop, too.)
+
+3. Don't ever use scala.collection.immutable. Replacing a
+scala.collection.immutable.HashMap with a java.util.concurrent.ConcurrentHashMap
+in a wrapper also produced a large performance benefit for a strictly read-only
+workload. Replacing a small Set with an array for lookups was another big win,
+performance-wise.
+
+4. Always use private[this]. Doing so avoids turning simple field access into an
+invokevirtual on generated getters and setters. Generally HotSpot would end up
+inlining these, but inside our inner serialization loop this made a huge
+difference.
+
+5. Avoid closures. Ditching Specs2 for my little JUnit wrapper meant that the
+main test class for one of our projects (~600-700 lines) no longer took three
+minutes to compile or produced 6MB of .class files. It did this by not capturing
+everything as closures. At some point, we stopped seeing lambdas as free and
+started seeing them as syntactic sugar on top of anonymous classes and thus
+acquired the same distaste for them as we did anonymous classes.
+
+Now, every language has its performance issues, and the best a standard library
+can hope to do is to hit 80% of use cases. But what we found were pervasive
+issues â€” we could replace all of our own usages of s.c.i.HashMap, but it's a
+class which is extensively used throughout the standard library. It being slower
+than j.u.HashMap means groupBy is slower, as is a lot of other collections
+functionality I like.
+
+At some point, I wondered if the positive aspects of our development experience
+owed less to Scala and more to the set of libraries we use, so I spent a few
+days and roughly ported a medium-sized service to pure Java. I broached this
+issue with the team, demo'd the two codebases, and was actually surprised by the
+rather immediate consensus on switching. There's definitely aspects of Scala
+we'll miss, but it's not enough to keep us around.
+
+Already I've moved our base web service stack to Java, with Scala support as a
+separate module. New services are already being written on it, and given the
+results from our Hack Day at the beginning of this week it hasn't slowed our
+ability to quickly ship complex code. I'm keeping a close eye on the effects of
+this change, but I'm optimistic, and the team seems excited. We'll see.
+
+So.
+
+I've tried hard here not to offer you advice. Some of these problems could
+easily be specific to our team and our workload; some of them won't make a
+difference in how your company does; some of them aren't even your problems to
+solve, really. But they're still the problems we've encountered over the past
+two years, and they compose the bulk of what's motivating this change.
+
+Despite the fact that we're moving away from Scala, I still think it's one of
+the most interesting, innovative, and exciting languages I've used, and I hope
+this giant wall of opinion helps you in some way to see it succeed. If there's
+anything here I can clarify for you, please let me know.
