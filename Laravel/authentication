@@ -1,0 +1,23 @@
+on 5.2
+
+dustin@latitude:~/Stash/project$ php artisan make:auth
+Created View: /home/dustin/Stash/project/resources/views/auth/login.blade.php
+Created View: /home/dustin/Stash/project/resources/views/auth/register.blade.php
+Created View: /home/dustin/Stash/project/resources/views/auth/passwords/email.blade.php
+Created View: /home/dustin/Stash/project/resources/views/auth/passwords/reset.blade.php
+Created View: /home/dustin/Stash/project/resources/views/auth/emails/password.blade.php
+Created View: /home/dustin/Stash/project/resources/views/layouts/app.blade.php
+Created View: /home/dustin/Stash/project/resources/views/home.blade.php
+Created View: /home/dustin/Stash/project/resources/views/welcome.blade.php
+Installed HomeController.
+Updated Routes File.
+Authentication scaffolding generated successfully!
+dustin@latitude:~/Stash/project$
+
+
+Setting redirect after login:
+
+AuthController::redirectTo = '/path';
+
+
+https://laravel.com/docs/5.2/authentication
