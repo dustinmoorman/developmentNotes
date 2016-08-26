@@ -1,0 +1,19 @@
+interesting way to do this, I've been using..
+
+a new file:
+
+config/constants.php
+
+
+//Constants.php
+<?php 
+
+return [
+	'SITE_NAME' => 'EXAMPLE.COM'
+];
+
+
+//Access in the code
+
+
+Config::get('constants.SITE_NAME');
