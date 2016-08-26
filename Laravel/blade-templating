@@ -1,0 +1,7 @@
+this is pretty awesome
+
+{{ Auth::user()->name }}
+
+functions as if it were an
+
+<? echo Auth::user()->name ?>
