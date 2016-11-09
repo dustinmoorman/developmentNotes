@@ -1,0 +1,5 @@
+git clone --recursive <repo>
+
+or on existing
+
+git submodule update --init --recursive
