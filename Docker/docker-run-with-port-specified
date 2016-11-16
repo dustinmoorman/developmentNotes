@@ -1,0 +1,5 @@
+sudo docker run -p 80:80 docker-php-img-2
+
+# -p specifies a port map, can be done by dockerfile I think.
+# but in any case, the first value is the host port, second
+# is the container port
