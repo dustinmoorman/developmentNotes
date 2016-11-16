@@ -1,0 +1,2 @@
+#When Dockerfile is in current directory
+sudo docker build -t single-redis .
